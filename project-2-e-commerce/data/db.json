@@ -1,0 +1,14 @@
+{
+    "products": [
+        {
+            "name": "Gấu bông Teddy cute",
+            "id": "1",
+            "price": 100000,
+            "oldPrice": 150000,
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/03.jpg?v=1631014826000",
+            "brand": "Teddy",
+            "color": "blue",
+            "size": "25cm"
+        }
+    ]
+}
