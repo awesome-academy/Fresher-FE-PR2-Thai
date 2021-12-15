@@ -1,12 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = []
+const initialState = {
+    filter: {
+        q: '',
+    }
+}
 
-export const ProductsSlice = createSlice(
-    'products',
+export const ProductsSlice = createSlice({
+    name: 'products',
     initialState,
-    reducers,
-    extraReducers,
-)
+    reducers: {
+        searchByWords: (state, action) => {
+            state.filter.q = action.payload
+        }
+    },
+    extraReducers: {
 
+    },
+})
+
+export const { searchByWords } = ProductsSlice.actions
 export default ProductsSlice.reducer

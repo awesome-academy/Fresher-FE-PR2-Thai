@@ -1,0 +1,23 @@
+{
+    "logout": "Logout",
+    "account": "Account",
+    "login": "Login",
+    "register": "Register",
+    "home": "HOME",
+    "introduction": "ABOUT US",
+    "products": "PRODUCTS",
+    "contact": "CONTACT",
+    "news": "NEWS",
+    "search placeholder": "Search...",
+    "policy return": "Return in 7 day",
+    "policy freeship": "Freeship",
+    "policy customers": "Loyal customers",
+    "address": "Address",
+    "footer contact": "Contact",
+    "footer heading 1": "ABOUT US",
+    "footer heading policy": "Policies",
+    "footer heading support": "Support",
+    "footer heading form": "Accept promotion email",
+    "footer heading follows": "Follow us",
+    "email placholder": "Your email address"
+}
