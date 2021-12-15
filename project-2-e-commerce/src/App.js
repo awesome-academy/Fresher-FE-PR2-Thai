@@ -1,6 +1,6 @@
 import Header from './component/header'
 import Footer from './component/footer'
-import Home from './component/Home'
+import Home from './component/home'
 import Products from './component/Products'
 import ProductsDetail from './component/ProductsDetail'
 import Login from './component/Login'
@@ -9,7 +9,7 @@ import Account from './component/account'
 import Cart from './component/cart'
 import NotFound from './component/NotFound'
 import { Routes, Route } from "react-router-dom";
-import './style/App.css'
+import './style/_global.scss'
 
 function App() {
     return (

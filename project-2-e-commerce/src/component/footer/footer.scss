@@ -1,0 +1,26 @@
+@import '../../style/variable';
+
+.footer {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    .btn-email {
+        width: 60px;
+        height: 30px;
+        border: none;
+        cursor: pointer;
+    }
+}
+.footer-item {
+    .footer-heading , li {
+        font-size: 1.5rem;
+    }
+    a {
+        color: $textColor;
+    }
+}
+.footer-icon {
+    opacity: 0.5;
+    &:hover {
+        opacity: 1;
+    }
+}

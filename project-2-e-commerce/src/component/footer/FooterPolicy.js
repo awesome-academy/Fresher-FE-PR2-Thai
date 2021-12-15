@@ -6,14 +6,14 @@ function FooterPolicy() {
     return ( 
         <div className='footer-item lg-3 md-6 sm-12'>
             <h3 className='footer-heading'>{t('footer heading policy')}</h3>
-            <ul>
-                <li>
+            <ul className='mt-3'>
+                <li className='mb-2'>
                     <Link to="/">{t('policy return')}</Link>
                 </li>
-                <li>
+                <li className='mb-2'>
                     <Link to="/">{t('policy freeship')}</Link>
                 </li>
-                <li>
+                <li className='mb-2'>
                     <Link to="/">{t('policy customers')}</Link>
                 </li>
             </ul>

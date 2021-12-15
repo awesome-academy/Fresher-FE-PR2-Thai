@@ -13,10 +13,13 @@
     "policy freeship": "Miễn phí ship",
     "policy customers": "Khách hàng thân thiết",
     "address": "Địa chỉ",
-    "footer heading 1": "Về chúng tôi",
+    "footer heading about": "Về chúng tôi",
     "footer heading policy": "Chính sách",
     "footer heading support": "Hỗ trợ khách hàng",
     "footer heading form": "Đăng ký nhận khuyến mãi",
     "footer heading follows": "Theo dõi chúng tôi",
-    "email placholder": "Nhập địa chỉ email"
+    "email placholder": "Nhập địa chỉ email",
+    "home featured heading": "Sản phẩm nổi bật",
+    "home new heading": "Sản phẩm mới",
+    "see more": "Xem thêm"
 }
