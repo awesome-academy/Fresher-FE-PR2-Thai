@@ -1,0 +1,40 @@
+.footer {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+.footer-item .footer-heading {
+    font-size: 1.5rem;
+}
+.footer-item ul {
+    margin-top: 30px;
+}
+.footer-item ul li {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+.footer-item ul li a {
+    color: var(--textColor);
+}
+.footer-link {
+    margin-top: 20px;
+}
+.footer-icon {
+    opacity: 0.5;
+    font-size: 1.6rem;
+    margin-right: 20px;
+}
+.footer-icon:hover {
+    opacity: 1;
+}
+.footer-input {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.btn-email {
+    width: 60px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}

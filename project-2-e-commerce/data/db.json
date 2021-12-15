@@ -3,12 +3,167 @@
         {
             "name": "Gấu bông Teddy cute",
             "id": "1",
-            "price": 100000,
-            "oldPrice": 150000,
+            "price": 168000,
+            "oldPrice": "",
             "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/03.jpg?v=1631014826000",
             "brand": "Teddy",
             "color": "blue",
-            "size": "25cm"
+            "size": "25cm",
+            "type": ["new", "special"]
+        },
+        {
+            "name": "Nước hoa DG",
+            "id": "2",
+            "price": 100000,
+            "oldPrice": 150000,
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/12.jpg?v=1525922725847",
+            "brand": "DG",
+            "color": "",
+            "size": "",
+            "type": ["sale"]
+        },
+        {
+            "name": "Quà tặng chocolate",
+            "id": "3",
+            "price": 600000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/08.jpg?v=1525922722587",
+            "brand": "Vimax",
+            "color": "",
+            "size": "",
+            "type": ["new"]
+        },
+        {
+            "name": "Vali đẹp cute",
+            "id": "4",
+            "price": 800000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/11c6fe4ca42878460fae66ca86d30f.jpg",
+            "brand": "DG",
+            "color": "",
+            "size": "",
+            "type": ["new"]
+        },
+        {
+            "name": "Balo thời trang",
+            "id": "5",
+            "price": 350000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/…691894f5b799347cb9515ad307e51.jpg?v=1525922719323",
+            "brand": "Prada",
+            "color": "",
+            "size": "",
+            "type": ["new"]
+        },
+        {
+            "name": "Balo Prada cá tính",
+            "id": "6",
+            "price": 150000,
+            "oldPrice": 250000,
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/01.jpg",
+            "brand": "Prada",
+            "color": "",
+            "size": "",
+            "type": ["special", "sale"]
+        },
+        {
+            "name": "Hoa hình trái tim",
+            "id": "7",
+            "price": 450000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/…71024x102438dc468cbc024508843.jpg?v=1525922712043",
+            "brand": "Flower",
+            "color": "",
+            "size": "",
+            "type": ["special"]
+        },
+        {
+            "name": "Hoa ngát hương",
+            "id": "8",
+            "price": 450000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/021024x1024d4bc94f8703849e5bbf.jpg?v=1525922710737",
+            "brand": "Flower",
+            "color": "",
+            "size": "",
+            "type": ["special"]
+        },
+        {
+            "name": "Bộ quần áo hồng cá tính",
+            "id": "9",
+            "price": 550000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/14.jpg?v=1525922723737",
+            "brand": "Her",
+            "color": "",
+            "size": "",
+            "type": ["new"]
+        },
+        {
+            "name": "Nhẫn cưới đẹp DG",
+            "id": "10",
+            "price": 4200000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/3.jpg?v=1525922708107",
+            "brand": "DG",
+            "color": "",
+            "size": "",
+            "type": ["special"]
+        },
+        {
+            "name": "Nhẫn kim cương cao cấp",
+            "id": "11",
+            "price": 2000000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/10.jpg?v=1525922703433",
+            "brand": "DG",
+            "color": "",
+            "size": "",
+            "type": ["special"]
+        },
+        {
+            "name": "Hoa đẹp 8/3 flower",
+            "id": "12",
+            "price": 500000,
+            "oldPrice": 600000,
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/011024x1024.jpg?v=1525922709617",
+            "brand": "Flower",
+            "color": "",
+            "size": "",
+            "type": ["special", "sale"]
+        },
+        {
+            "name": "Nhẫn cưới ISCO",
+            "id": "13",
+            "price": 3100000,
+            "oldPrice": 3500000,
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/9.jpg?v=1525922706217",
+            "brand": "ISCO",
+            "color": "",
+            "size": "",
+            "type": ["special", "sale"]
+        },
+        {
+            "name": "Nhẫn trái tim",
+            "id": "14",
+            "price": 2500000,
+            "oldPrice": 3000000,
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/…5c789c84aba24dbb899269166a320.jpg?v=1525922704440",
+            "brand": "Bravo",
+            "color": "",
+            "size": "",
+            "type": ["special", "sale"]
+        },
+        {
+            "name": "Nhẫn kim cương ISCO",
+            "id": "15",
+            "price": 5000000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/…ac2c90d2fae247b59c9c7b73500c4.jpg?v=1525922705533",
+            "brand": "ISCO",
+            "color": "",
+            "size": "",
+            "type": ["special"]
         }
     ]
 }
