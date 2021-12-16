@@ -1,4 +1,4 @@
-import './footer.css'
+import './footer.scss'
 import FooterAbout from './FooterAbout';
 import FooterPolicy from './FooterPolicy';
 import FooterSupport from './FooterSupport';

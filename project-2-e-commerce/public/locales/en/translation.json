@@ -14,10 +14,13 @@
     "policy customers": "Loyal customers",
     "address": "Address",
     "footer contact": "Contact",
-    "footer heading 1": "ABOUT US",
+    "footer heading about": "ABOUT US",
     "footer heading policy": "Policies",
     "footer heading support": "Support",
     "footer heading form": "Accept promotion email",
     "footer heading follows": "Follow us",
-    "email placholder": "Your email address"
+    "email placholder": "Your email address",
+    "home featured heading": "Featured products",
+    "home new heading": "New Products",
+    "see more": "See more"
 }

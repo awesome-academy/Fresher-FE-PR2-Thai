@@ -1,0 +1,21 @@
+@import '../../style/variable';
+
+.product-item {
+    margin-bottom: 24px;
+}
+.product-info {
+    padding-top: 20px;
+    color: $textColor;
+}
+.current-price {
+    margin-right: 16px;
+    font-weight: 600;
+}
+.old-price {
+    text-decoration: line-through;
+}
+.new-products {
+    .product-item {
+        width: 100%;
+    }
+}

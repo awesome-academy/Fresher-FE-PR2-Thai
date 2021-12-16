@@ -1,0 +1,59 @@
+@import '../../style/variable';
+
+.header-user {
+    background-color: $mainColor;
+    .wrap {
+        height: 40px;
+        justify-content: space-between;
+        font-size: 1.4rem;
+    }
+    .lang {
+        display: inline-block;
+        width: 30px;
+        text-align: center;
+        margin-right: 10px;
+    }
+    .switch-lang-btn{
+        border: none;
+        padding: 2px 10px;
+    }
+}
+
+.header-shop {
+    height: 100px;
+}
+
+.header-nav {
+    .wrap {
+        height: 60px;
+        border-top: $borderDefault;
+        justify-content: space-between;
+        font-size: 1.4rem;
+    }
+    a {
+        font-weight: 700;
+        font-size: 1.6rem;
+    }
+    .cart {
+        position: relative;
+    }
+    .btn-search{
+        height: 30px;
+        width: 30px;
+        font-size: 1.6rem;
+        background-color: transparent;
+        border: none;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    .cart-qnt {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        width: 20px;
+        height: 20px;
+        font-size: 1.3rem;
+        font-weight: 300;
+        border-radius: 50%;
+    }
+}

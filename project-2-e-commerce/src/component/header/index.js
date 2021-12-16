@@ -1,4 +1,4 @@
-import './header.css'
+import './header.scss'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
@@ -8,15 +8,16 @@ import { useTranslation } from 'react-i18next'
 function Header() {
     const { t, i18n } = useTranslation()
     const dispatch = useDispatch()
-    const userState = useSelector(state => state.user)
-    const { isLogged, carts } = userState
-    const [inputSearch, setInputSearch] = useState('')
+    const { isLogged, carts } = useSelector(({user}) => user)
     const cartLength = carts.length
+    const [inputSearch, setInputSearch] = useState('')
     const [currentLang, setCurrentLang] = useState('vi')
+
     const handleChange = (e) => {
         setInputSearch(e.target.value)
         dispatch(searchByWords(e.target.value))
     }
+
     const handleSwitchLanguage = () => {
         if (currentLang === 'en') {
             i18n.changeLanguage("vi")
@@ -26,29 +27,30 @@ function Header() {
             setCurrentLang('en')
         }
     }
+
     return ( 
         <header className="header">
             <div className="header-user">
-                <div className='wrap'>
+                <div className='wrap d-flex ai-center'>
                     <div className='header-contact'>
-                        <a className="contact-mail" href="tel:19009999">Hotline: 19009999</a>
-                        <a href="mailto:support@gamil.com">Email: support@gmail.com</a>
+                        <a className="contact-mail mr-3 text-white" href="tel:19009999">Hotline: 19009999</a>
+                        <a href="mailto:support@gamil.com" className=' text-white'>Email: support@gmail.com</a>
                     </div>
-                    <div className='header-option'>
+                    <div className='header-option d-flex ai-center'>
                         {isLogged ?
                             <div className='user-option'>
-                                <span className='logout'>{t('logout')}</span>
-                                <Link to="account">{t('account')}</Link>
+                                <span className='logout text-white mr-3'>{t('logout')}</span>
+                                <Link to="account" className='text-white'>{t('account')}</Link>
                             </div>
                         :
-                            <div className='user-option'>
-                                <Link className="login" to="login">{t('login')}</Link>
-                                <Link className="register" to="register">{t('register')}</Link>
+                            <div className='user-option text-white'>
+                                <Link className="login text-white mr-3" to="login">{t('login')}</Link>
+                                <Link className="register text-white" to="register">{t('register')}</Link>
                             </div>
                         }
-                        <div className='header-change-lang'>
-                            <span className="lang">{currentLang}</span>
-                            <button onClick={()=>handleSwitchLanguage()} className="switchLangBtn">
+                        <div className='header-change-lang ml-3'>
+                            <span className="lang bg-white text-red">{currentLang}</span>
+                            <button onClick={()=>handleSwitchLanguage()} className="switch-lang-btn">
                                 VI/EN
                             </button>
                         </div>
@@ -61,28 +63,28 @@ function Header() {
                 </Link>
             </div>
             <div className="header-nav">
-                <div className='wrap'>
+                <div className='wrap d-flex ai-center'>
                     <nav className='header-nav-left'>
-                        <ul>
+                        <ul className='d-flex'>
                             <li>
                                 <Link to="/">{t('home')}</Link>
                             </li>
-                            <li>
+                            <li className='ml-3'>
                                 <Link to="/">{t('introduction')}</Link>
                             </li>
-                            <li>
+                            <li  className='ml-3'>
                                 <Link to="products">{t('products')}</Link>
                             </li>
-                            <li>
+                            <li className='ml-3'>
                                 <Link to="/">{t('contact')}</Link>
                             </li>
-                            <li>
+                            <li className='ml-3'>
                                 <Link to="/">{t('news')}</Link>
                             </li>
                         </ul>
                     </nav>
-                    <div className="header-nav-right">
-                        <div className='header-search'>
+                    <div className="header-nav-right d-flex ai-center">
+                        <div className='header-search d-flex'>
                             <input className='input-search input' placeholder={t('search placeholder')}
                                 value={inputSearch} onChange={(e)=>handleChange(e)}
                             />
@@ -99,7 +101,7 @@ function Header() {
                         <div className='header-cart'>
                             <Link className="cart" to="cart">
                                 <i className="fas fa-shopping-cart"/>
-                                <div className='cart-qnt flex-center'>
+                                <div className='cart-qnt flex-center bg-blue text-white'>
                                     {cartLength && isLogged ? cartLength : '0'}
                                 </div>
                             </Link>

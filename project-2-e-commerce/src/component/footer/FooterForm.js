@@ -5,20 +5,20 @@ function FooterForm() {
     return ( 
         <div className='footer-item lg-3 md-6 sm-12'>
             <h3 className='footer-heading'>{t('footer heading form')}</h3>
-            <div className='footer-input'>
+            <div className='footer-input d-flex ai-center mt-3 mb-2'>
                 <input className='input-email input' placeholder='Nhập địa chỉ email'/>
                 <button className='btn-email btn'>{t('register')}</button>
             </div>
             <h3 className='footer-heading'>{t('footer heading follows')}</h3>
-            <div className='footer-link'>
-                <a href='https://facebook.com' target="blank" className='footer-icon'>
-                    <i class="fab fa-facebook-f"/>
+            <div className='footer-link mt-2'>
+                <a href='https://facebook.com' target="blank" className='footer-icon mr-2 fs-default'>
+                    <i className="fab fa-facebook-f"/>
                 </a>
-                <a href='https://twitter.com' target="blank" className='footer-icon'>
-                    <i class="fab fa-twitter"/>
+                <a href='https://twitter.com' target="blank" className='footer-icon mr-2 fs-default'>
+                    <i className="fab fa-twitter"/>
                 </a>
-                <a href='https:/instagram.com' target="blank" className='footer-icon'>
-                    <i class="fab fa-instagram"></i>
+                <a href='https:/instagram.com' target="blank" className='footer-icon fs-default'>
+                    <i className="fab fa-instagram"></i>
                 </a>
             </div>
         </div>
