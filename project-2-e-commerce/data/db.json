@@ -50,7 +50,7 @@
             "price": 350000,
             "oldPrice": "",
             "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/1691894f5b799347cb9515ad307e51.jpg?v=1525922719323",
-            "brand": "Prada",
+            "brand": "PRADA",
             "color": "",
             "size": "",
             "type": ["new"]
@@ -61,7 +61,7 @@
             "price": 150000,
             "oldPrice": 250000,
             "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/01.jpg",
-            "brand": "Prada",
+            "brand": "PRADA",
             "color": "",
             "size": "",
             "type": ["special", "sale"]
@@ -148,7 +148,7 @@
             "id": "14",
             "price": 2500000,
             "oldPrice": 3000000,
-            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/…5c789c84aba24dbb899269166a320.jpg?v=1525922704440",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/15c789c84aba24dbb899269166a320.jpg?v=1525922704440",
             "brand": "Bravo",
             "color": "",
             "size": "",
@@ -164,6 +164,50 @@
             "color": "",
             "size": "",
             "type": ["special"]
+        },
+        {
+            "name": "Hộp quà tặng hoa và gấu",
+            "id": "16",
+            "price": 5000000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/05.jpg?v=1525922720930",
+            "brand": "DTH",
+            "color": "",
+            "size": "",
+            "type": ["new"]
+        },
+        {
+            "name": "Balo đi học xinh xắn",
+            "id": "17",
+            "price": 550000,
+            "oldPrice": 650000,
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/15.jpg?v=1525922717177",
+            "brand": "PRADA",
+            "color": "",
+            "size": "",
+            "type": ["sale"]
+        },
+        {
+            "name": "Hộp quà tặng Flower 01",
+            "id": "18",
+            "price": 1500000,
+            "oldPrice": "",
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/051024x1024.jpg?v=1525922714433",
+            "brand": "Flower",
+            "color": "",
+            "size": "",
+            "type": []
+        },
+        {
+            "name": "Hộp quà tặng Flower 02",
+            "id": "19",
+            "price": 2000000,
+            "oldPrice": 2100000,
+            "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/031024x1024.jpg?v=1525922713240",
+            "brand": "Flower",
+            "color": "",
+            "size": "",
+            "type": ["sale"]
         }
     ]
 }

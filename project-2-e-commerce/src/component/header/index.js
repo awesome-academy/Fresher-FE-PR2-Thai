@@ -1,14 +1,16 @@
 import './header.scss'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
-import { searchByWords } from '../../store/slices/ProductsSlice'
+import { searchByWords, getProducts, getPagination, resetFilter } from '../../store/slices/ProductsSlice'
 import { useTranslation } from 'react-i18next'
+import { setActiveColor } from './helper'
 
 function Header() {
     const { t, i18n } = useTranslation()
     const dispatch = useDispatch()
     const { isLogged, carts } = useSelector(({user}) => user)
+    const { filter } = useSelector(({ products }) => products.all)
     const cartLength = carts.length
     const [inputSearch, setInputSearch] = useState('')
     const [currentLang, setCurrentLang] = useState('vi')
@@ -16,6 +18,14 @@ function Header() {
     const handleChange = (e) => {
         setInputSearch(e.target.value)
         dispatch(searchByWords(e.target.value))
+    }
+
+    const handleSeachProducts = () => {
+        if (inputSearch) {
+            setInputSearch('')
+            dispatch(getProducts(filter))
+            dispatch(getPagination({...filter, _limit: '', _page: ''}))
+        }
     }
 
     const handleSwitchLanguage = () => {
@@ -67,19 +77,27 @@ function Header() {
                     <nav className='header-nav-left'>
                         <ul className='d-flex'>
                             <li>
-                                <Link to="/">{t('home')}</Link>
+                                <NavLink style={setActiveColor} to="/"
+                                    onClick={()=>dispatch(resetFilter())}
+                                >{t('home')}</NavLink>
                             </li>
                             <li className='ml-3'>
-                                <Link to="/">{t('introduction')}</Link>
-                            </li>
-                            <li  className='ml-3'>
-                                <Link to="products">{t('products')}</Link>
-                            </li>
-                            <li className='ml-3'>
-                                <Link to="/">{t('contact')}</Link>
+                                <NavLink style={setActiveColor} to="/intro"
+                                    onClick={()=>dispatch(resetFilter())}
+                                >{t('introduction')}</NavLink>
                             </li>
                             <li className='ml-3'>
-                                <Link to="/">{t('news')}</Link>
+                                <NavLink style={setActiveColor} to="/products">{t('products')}</NavLink>
+                            </li>
+                            <li className='ml-3'>
+                                <NavLink style={setActiveColor} to="/contact"
+                                    onClick={()=>dispatch(resetFilter())}
+                                > {t('contact')}</NavLink>
+                            </li>
+                            <li className='ml-3'>
+                                <NavLink style={setActiveColor} to="/news"
+                                    onClick={()=>dispatch(resetFilter())}
+                                >{t('news')}</NavLink>
                             </li>
                         </ul>
                     </nav>
@@ -89,11 +107,14 @@ function Header() {
                                 value={inputSearch} onChange={(e)=>handleChange(e)}
                             />
                             {inputSearch ? 
-                                <Link to="/products" className='btn-search flex-center'>
+                                <Link to="/products" className='btn-search flex-center'
+                                    onClick={()=> handleSeachProducts()}
+                                >
                                     <i className="fas fa-search"/>
                                 </Link>
                             :
-                                <button className='btn-search'>
+                                <button className='btn-search'
+                                >
                                     <i className="fas fa-search"/>
                                 </button>
                             }
