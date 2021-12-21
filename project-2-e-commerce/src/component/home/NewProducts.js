@@ -3,7 +3,7 @@ import "react-multi-carousel/lib/styles.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import ProductsItem from '../product-item';
-import { carouselResponsive } from './helpers'
+import { carouselResponsive } from '../../helpers'
 import { getNewProds } from '../../store/slices/ProductsSlice'
 import LoadingComponent from '../loading/index'
 import { useTranslation } from 'react-i18next'

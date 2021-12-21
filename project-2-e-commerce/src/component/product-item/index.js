@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom'
 import './product-item.scss'
-import { formatPrice } from '../home/helpers'
+import { formatPrice } from '../../helpers'
 
 function ProductsItem({item}) {
     const { name, id, price, oldPrice, img} = item
     const priceFormat = formatPrice(price)
     let oldPriceFormat = oldPrice ? formatPrice(oldPrice) : null
+    let href = `/products/${id}`
     return ( 
         <div className='product-item lg-3 md-6 sm-12'>
-            <Link to="product-detail" className="product-link d-block" data-id={id}>
+            <Link to={href} className="product-link d-block" data-id={id}>
                 <img className='product-img w-100' alt="hinh anh" src={img}></img>
             </Link>
             <div className='product-info'>

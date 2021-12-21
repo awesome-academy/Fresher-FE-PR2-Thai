@@ -9,7 +9,8 @@
             "brand": "Teddy",
             "color": "blue",
             "size": "25cm",
-            "type": ["new", "special"]
+            "type": ["new", "special"],
+            "desc": "Gấu Teddy cute là dòng gấu nhồi bông lông xoắn hoa hồng có màu sắc được nhiều bạn gái yêu thích nhất. Quá khó cho bạn để chọn được một con gấu bông teddy trong hàng ngàn gấu Teddy hiện nay. Con thú nhồi bông nào cũng to lớn con nào cùng đẹp xinh con nào cũng dễ thương đáng yêu cả. Gợi ý cho bạn một lựa chọn thông minh khi rước em gấu bông teddy 1m2 về nhà. Không giống với những chú gấu buồn tâm trạng hoặc trẻ trung sang trọng thì gấu này lại dịu hiền ít nói như mang nhiều suy tư vậy, gương mặt cười rạng rỡ truyền niềm vui cho mọi người. Shop có các loại 90cm - 1m - 1m2 - 1m3 - 1m4 - 1m6 và 2m. Có các màu như nâu socola, nâu cafe sữa, kem, hồng, tím. Các bạn vui lòng liên hệ trước với Shop, Shop sẽ gọi Video để các bạn chọn. Shop hút chân không gấu giảm chi phí vận chuyển. Kích cở gấu tính theo khổ vải nhé."
         },
         {
             "name": "Nước hoa DG",
@@ -20,7 +21,8 @@
             "brand": "DG",
             "color": "",
             "size": "",
-            "type": ["sale"]
+            "type": ["sale"],
+            "desc": "Nước hoa DG hơn tất cả các loại nước hoa thông thường. Đó là sản phẩm lớn nhất mà Burberry từng thực hiện – Burberry Body như là sự tóm gọn tất cả những cái hiện đại và những thành quả có được của nhãn hiệu thời trang Anh quốc ngày nay để phản ánh toàn bộ khía cạnh làm nên thế giới. Mùi hương đặc trưng: Absinthe xanh tươi, lan Nam Phi và đào illuminating; nhụy hoa hồng, hoa diên vĩ (cây irit) và gỗ đàn hương ấm áp; gỗ cashmeran, vani, xạ hương, hổ phách. Phong cách: trẻ trung , lôi cuốn , tinh tế. Cách dùng: chấm sản phẩm lên những vùng da có nhiều mạch máu như gáy, sau tai, cổ tay để mùi hương tỏa đều và lưu lại lâu hơn. Chú ý không sử dụng quá nhiều."
         },
         {
             "name": "Quà tặng chocolate",
@@ -31,7 +33,8 @@
             "brand": "Vimax",
             "color": "",
             "size": "",
-            "type": ["new"]
+            "type": ["new"],
+            "desc": ""
         },
         {
             "name": "Vali đẹp cute",
@@ -42,7 +45,8 @@
             "brand": "DG",
             "color": "",
             "size": "",
-            "type": ["new"]
+            "type": ["new"],
+            "desc": "Vali kéo được thiết kế đẹp, màu sắc và họa tiết đa dạng, có bánh xe và tay kéo tiện dụng, giúp vận chuyển dễ dàng. Tải trọng khoảng 7 đến 8kg, giúp bạn mang theo được nhiều đồ đạc hơn khi đi du lịch, công tác. Chất liệu nhựa dẻo chắc chắn, chống thấm, bảo đảm an toàn tuyệt đối cho đồ đạc bên trong. Khách hàng bù thêm 500.000 VNĐ để lấy vali size S kích thước 55*22*33cm cho tất cả các mẫu."
         },
         {
             "name": "Balo thời trang",
@@ -53,7 +57,8 @@
             "brand": "PRADA",
             "color": "",
             "size": "",
-            "type": ["new"]
+            "type": ["new"],
+            "desc": ""
         },
         {
             "name": "Balo Prada cá tính",
@@ -64,7 +69,8 @@
             "brand": "PRADA",
             "color": "",
             "size": "",
-            "type": ["special", "sale"]
+            "type": ["special", "sale"],
+            "desc": ""
         },
         {
             "name": "Hoa hình trái tim",
@@ -75,7 +81,8 @@
             "brand": "Flower",
             "color": "",
             "size": "",
-            "type": ["special"]
+            "type": ["special"],
+            "desc": ""
         },
         {
             "name": "Hoa ngát hương",
@@ -86,7 +93,8 @@
             "brand": "Flower",
             "color": "",
             "size": "",
-            "type": ["special"]
+            "type": ["special"],
+            "desc": ""
         },
         {
             "name": "Bộ quần áo hồng cá tính",
@@ -97,7 +105,8 @@
             "brand": "Her",
             "color": "",
             "size": "",
-            "type": ["new"]
+            "type": ["new"],
+            "desc": ""
         },
         {
             "name": "Nhẫn cưới đẹp DG",
@@ -108,7 +117,8 @@
             "brand": "DG",
             "color": "",
             "size": "",
-            "type": ["special"]
+            "type": ["special"],
+            "desc": ""
         },
         {
             "name": "Nhẫn kim cương cao cấp",
@@ -119,7 +129,8 @@
             "brand": "DG",
             "color": "",
             "size": "",
-            "type": ["special"]
+            "type": ["special"],
+            "desc": ""
         },
         {
             "name": "Hoa đẹp 8/3 flower",
@@ -130,7 +141,8 @@
             "brand": "Flower",
             "color": "",
             "size": "",
-            "type": ["special", "sale"]
+            "type": ["special", "sale"],
+            "desc": ""
         },
         {
             "name": "Nhẫn cưới ISCO",
@@ -141,7 +153,8 @@
             "brand": "ISCO",
             "color": "",
             "size": "",
-            "type": ["special", "sale"]
+            "type": ["special", "sale"],
+            "desc": ""
         },
         {
             "name": "Nhẫn trái tim",
@@ -152,7 +165,8 @@
             "brand": "Bravo",
             "color": "",
             "size": "",
-            "type": ["special", "sale"]
+            "type": ["special", "sale"],
+            "desc": ""
         },
         {
             "name": "Nhẫn kim cương ISCO",
@@ -163,7 +177,8 @@
             "brand": "ISCO",
             "color": "",
             "size": "",
-            "type": ["special"]
+            "type": ["special"],
+            "desc": ""
         },
         {
             "name": "Hộp quà tặng hoa và gấu",
@@ -174,7 +189,8 @@
             "brand": "DTH",
             "color": "",
             "size": "",
-            "type": ["new"]
+            "type": ["new"],
+            "desc": ""
         },
         {
             "name": "Balo đi học xinh xắn",
@@ -185,7 +201,8 @@
             "brand": "PRADA",
             "color": "",
             "size": "",
-            "type": ["sale"]
+            "type": ["sale"],
+            "desc": ""
         },
         {
             "name": "Hộp quà tặng Flower 01",
@@ -196,7 +213,8 @@
             "brand": "Flower",
             "color": "",
             "size": "",
-            "type": []
+            "type": [],
+            "desc": ""
         },
         {
             "name": "Hộp quà tặng Flower 02",
@@ -207,7 +225,8 @@
             "brand": "Flower",
             "color": "",
             "size": "",
-            "type": ["sale"]
+            "type": ["sale"],
+            "desc": ""
         }
     ]
 }

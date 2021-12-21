@@ -1,0 +1,69 @@
+@import '../../style/variable';
+
+.products-detail {
+    padding-bottom: 20px;
+    border-bottom: $borderDefault;
+}
+.detail-img {
+    width: 40%;
+    padding-right: 15px;
+}
+.detail-option {
+    width: 60%;
+    padding-left: 15px;
+    .brand {
+        padding-right: 12px;
+    }
+}
+.detail-qnt {
+    height: 50px;
+
+}
+.input-box {
+    border: $borderDefault;
+}
+.input-qnt {
+    border: none !important;
+    width: 60px !important;
+    outline: none;
+    text-align: center;
+}
+.qnt-option {
+    width: 30px;
+    border-left: $borderDefault;
+}
+.option-btn {
+    cursor: pointer;
+    border: none;
+    background-color: $mainColor;
+    color: $whiteColor
+}
+.increment-btn {
+    border-bottom: $borderDefault !important;
+}
+.add-cart-btn {
+    width: 200px;
+    font-size: 1.4rem !important;
+    cursor: pointer;
+    &:hover {
+        background-color: $blackColor;
+    }
+}
+.tab-item {
+    height: 40px;
+    border: $borderDefault;
+    border-bottom: none;
+    color: $mainColor;
+    cursor: pointer;
+    &.active {
+        background-color: $mainColor;
+        border: none;
+        color: $whiteColor;
+    }
+}
+.tab-pane {
+    line-height: 1.6;
+}
+.desc-tabs-pane {
+    border: $borderDefault;
+}
