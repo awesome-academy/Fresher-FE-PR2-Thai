@@ -22,5 +22,17 @@
     "email placholder": "Your email address",
     "home featured heading": "Featured products",
     "home new heading": "New Products",
-    "see more": "See more"
+    "see more": "See more",
+    "home sale heading": "Sale",
+    "home all heading": "All products",
+    "category": "CATEGORY",
+    "sort label": "Sort",
+    "sort name asc": "Name A - Z",
+    "sort name desc": "Name Z - A",
+    "sort price asc": "Price ASC",
+    "sort price desc": "Price DESC",
+    "sort default": "Default",
+    "sort new": "Latest product",
+    "sort old": "Oldest product",
+    "brand": "BRANDS"
 }

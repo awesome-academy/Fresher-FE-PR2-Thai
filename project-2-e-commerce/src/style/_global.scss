@@ -20,7 +20,7 @@ html {
 }
 a {
     text-decoration: none;
-    color: black;
+    color: $blackColor;
 }
 ul {
     list-style: none;
@@ -57,14 +57,29 @@ ul {
 .jc-center {
     justify-content: center;
 }
+.jc-space-btw {
+    justify-content: space-between;
+}
+.jc-end {
+    justify-content: flex-end;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
 .mr-3 {
     margin-right: 3rem;
 }
 .mr-2 {
     margin-right: 2rem;
 }
+.mr-1 {
+    margin-right: 1rem;
+}
 .ml-3 {
     margin-left: 3rem;
+}
+.ml-1 {
+    margin-left: 1rem;
 }
 .mt-1 {
     margin-top: 1rem;
@@ -74,6 +89,9 @@ ul {
 }
 .mt-3 {
     margin-top: 3rem;
+}
+.mb-1 {
+    margin-bottom: 1rem;
 }
 .mb-2 {
     margin-bottom: 2rem;

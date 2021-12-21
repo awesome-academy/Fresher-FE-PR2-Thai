@@ -21,5 +21,17 @@
     "email placholder": "Nhập địa chỉ email",
     "home featured heading": "Sản phẩm nổi bật",
     "home new heading": "Sản phẩm mới",
-    "see more": "Xem thêm"
+    "see more": "Xem thêm",
+    "home sale heading": "Sản phẩm khuyến mãi",
+    "home all heading": "Tất cả sản phẩm",
+    "category": "DANH MỤC SẢN PHẨM",
+    "sort label": "Sắp xếp",
+    "sort name asc": "Tên A - Z",
+    "sort name desc": "Tên Z - A",
+    "sort price asc": "Giá tăng dần",
+    "sort price desc": "Giá giảm dần",
+    "sort default": "Mặc định",
+    "sort new": "Hàng mới nhất",
+    "sort old": "Hàng cũ nhất",
+    "brand": "LỌC THEO HÃNG"
 }

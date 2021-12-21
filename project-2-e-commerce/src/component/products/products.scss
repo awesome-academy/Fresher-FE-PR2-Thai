@@ -1,0 +1,81 @@
+@import '../../style/variable';
+
+.products {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: $borderDefault;
+    min-height: 80vh;
+}
+.category {
+    width: 25%;
+    padding-right: 15px;
+    &-item:hover {
+        cursor: pointer;
+        color: $greenColor;
+    }
+    &-item {
+        position: relative;
+    }
+    .close-brand {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+.content {
+    width: 75%;
+    padding-left: 15px;
+    &-heading {
+        height: 50px;
+        border-bottom: $borderDefault;
+    }
+    &-products {
+        padding-top: 30px;
+        padding-bottom: 50px;
+    }
+}
+select {
+    appearance: none;
+    outline: 0;
+    border: 0;
+    box-shadow: none;
+    flex: 1;
+    padding: 0 10px;
+    background-image: none;
+    cursor: pointer;
+    &::-ms-expand {
+        display: none;
+    }
+}
+.sort-select {
+    position: relative;
+    width: 200px;
+    height: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: $borderDefault;
+    &::after {
+        content: '\25BC';
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        transition: .25s all ease;
+        pointer-events: none;
+    }
+}
+.products-list {
+    .product-item {
+        width: 33.33333%;
+    }
+}
+.pagination-item {
+    height: 30px;
+    width: 40px;
+    font-size: 1.6rem;
+    border: $borderDefault;
+    cursor: pointer;
+    &.active {
+        background-color: $greenColor;
+    }
+}

@@ -2,6 +2,7 @@ import NewProducts from './NewProducts'
 import SpecialProducts from './SpecialProducts'
 import './home.scss'
 import banners from '../../assets/img/banners.jpg'
+import Brands from './Brands'
 
 function Home() {
     return ( 
@@ -13,6 +14,7 @@ function Home() {
                 <NewProducts/>
                 <SpecialProducts/>
             </section>
+            <Brands/>
         </div>
     );
 }

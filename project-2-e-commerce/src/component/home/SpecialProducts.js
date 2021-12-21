@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import ProductsItem from '../product-item'
-import { getSpecialProds } from '../../store/slices/ProductsSlice'
+import { getSpecialProds, setTypeRendering, setProductsFilter } from '../../store/slices/ProductsSlice'
 import LoadingComponent from '../loading'
 import { useTranslation } from 'react-i18next'
 
@@ -17,8 +17,9 @@ function SpecialProducts() {
     }, [filter, dispatch])
     
     const handleChangeProducts = () => {
-        const newFilter = { ...filter, '_limit': 16}
-        dispatch(getSpecialProds(newFilter))
+        const newFilter = { ...filter, type_like: 'special', _limit: 12}
+        dispatch(setTypeRendering('special'))
+        dispatch(setProductsFilter(newFilter))
     }
 
     return ( 

@@ -40,4 +40,17 @@
             opacity: 0.7;;
         }
     }
+    &.brand-list {
+        height: 120px;
+        margin-top: 50px;
+        border-bottom: $borderDefault;
+        border-top: $borderDefault;
+    }
+    .brand-item {
+        flex: 1;
+        padding: 10px;
+        img {
+            max-height: 100%;
+        }
+    }
 }
