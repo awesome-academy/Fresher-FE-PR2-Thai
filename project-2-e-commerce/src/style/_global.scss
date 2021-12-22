@@ -114,6 +114,12 @@ ul {
 .p-0 {
     padding: 0;
 }
+.p-1 {
+    padding: 1rem;
+}
+.p-2 {
+    padding: 2rem;
+}
 .pl-2 {
     padding-left: 2rem;
 }
@@ -125,6 +131,9 @@ ul {
 }
 .pb-2 {
     padding-bottom: 2rem;
+}
+.br-0 {
+    border-right: 0;
 }
 .w-100 {
     width: 100% !important;
@@ -147,6 +156,15 @@ ul {
 .fs-2 {
     font-size: 2rem;
 }
+.ta-right {
+    text-align: right;
+}
+.ta-center {
+    text-align: center;
+}
+.cursor-poiter {
+    cursor: pointer;
+}
 .input {
     height: 30px;
     width: 200px;
@@ -157,6 +175,17 @@ ul {
     background-color: $mainColor;
     font-size: 1.4rem;
     color: $whiteColor;
+    &:hover {
+        background-color: $blackColor;
+    }
+}
+.add-cart-btn {
+    width: 200px;
+    font-size: 1.4rem !important;
+    cursor: pointer;
+    &:hover {
+        background-color: $blackColor;
+    }
 }
 /* Resonsive */
 .lg-3 {

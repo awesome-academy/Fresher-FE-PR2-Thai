@@ -1,8 +1,8 @@
-import { formatPrice } from '../../helpers'
+import { formatPrice, getAddCartMessage } from '../../helpers'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, setIsAddSuccess, updateLocalCarts } from '../../store/slices/UserSlice'
+import { addToCart, setAddedItem, updateLocalCarts } from '../../store/slices/UserSlice'
 import Toast from '../toast'
 
 function DetailOption({ item }) {
@@ -11,7 +11,9 @@ function DetailOption({ item }) {
     const [hasQuantity, setHasQuantity] = useState(true)
     const { name, img, brand, price, oldPrice } = item
     const dispatch = useDispatch()
-    const { isLogged, isSuccessAdd, localCarts } = useSelector(({user}) => user)
+    const { isLogged, addedItem, localCarts, userData, notification } = useSelector(({user}) => user)
+    const { message, type } = notification
+
     const handleChangeInput = (e) => {
         let newQuantity = Number(e.target.value)
         if (isNaN(newQuantity)) {
@@ -51,12 +53,13 @@ function DetailOption({ item }) {
     const handleAddToCart = () => {
         if (quantity > 0) {
             const newCartItem = {...item, quantity: quantity}
+            const message = getAddCartMessage(newCartItem)
             if (isLogged) {
-                dispatch(addToCart(newCartItem))
+                dispatch(addToCart(newCartItem, userData.id))
             } else {
                 handleAddToLocal(newCartItem)
-                dispatch(setIsAddSuccess(true))
             }
+            dispatch(setAddedItem({item: newCartItem, message}))
         } else {
             setHasQuantity(false)
         }
@@ -80,9 +83,9 @@ function DetailOption({ item }) {
                     </span>
                 </div>
                 <div className='detail-price mt-2'>
-                    <span className='current-price mr-2 fs-3'>{formatPrice(price)}đ</span>
+                    <span className='current-price mr-2 fs-3'>{formatPrice(price, t)}</span>
                     <span className='old-price fs-default text-main'>
-                        {oldPrice ? `${formatPrice(oldPrice)}đ` : null}</span>
+                        {oldPrice ? `${formatPrice(oldPrice, t)}` : null}</span>
                 </div>
                 <div className='detail-desc fs-default mt-2 mb-3'>{t('description')}</div>
                 <div className='detail-qnt'>
@@ -107,7 +110,7 @@ function DetailOption({ item }) {
                             </div>
                         </div>
                         <div className='add-cart-btn btn ml-2 flex-center'
-                            onClick={()=>handleAddToCart()}
+                            onClick={()=>handleAddToCart(quantity)}
                         >
                             {t('add to cart')}
                         </div>
@@ -119,7 +122,7 @@ function DetailOption({ item }) {
                     }                   
                 </div>
             </div>
-            {isSuccessAdd && <Toast item={item}/>}
+            {addedItem && message && <Toast type={type} message={message}/>}
         </section>
     );
 }
