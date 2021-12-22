@@ -1,0 +1,62 @@
+@import '../../style/variable';
+
+.cart {
+    border-bottom: $borderDefault;
+    padding-bottom: 40px;
+}
+table, td, tr {
+    border: $borderDefault;
+}
+table {
+    border-collapse: collapse;
+    thead {
+        font-weight: 500;
+    }
+    td {
+        text-align: center;
+        padding: 15px;
+    }
+}
+.cart-img {
+    width: 200px;
+    img {
+        width: 60%;
+    }
+}
+.qnt-btn {
+    border: none;
+    outline: none;
+    width: 30px;
+    &:hover {
+        background-color: $greenColor;
+        color: $whiteColor;
+    }
+}
+.cart-pay {
+    display: flex;
+    justify-content: flex-end;
+    .pay-btn {
+        height: 36px;
+        min-width: 300px;
+    }
+}
+.confirm-del-modal {
+    position: fixed;
+    height: 150px;
+    width: 300px;
+    border-radius: 10px;
+    background-color: $navBackground;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 5px 1px $mainColor;
+}
+.del-confirm, .del-exit {
+    width: 50px;
+    height: 30px;
+    border: $borderDefault;
+    cursor: pointer;
+    &:hover {
+        background-color: $greenColor;
+    }
+}

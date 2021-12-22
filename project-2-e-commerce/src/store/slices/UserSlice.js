@@ -3,10 +3,11 @@ import axios from 'axios'
 
 const initialState = {
     isLogged: false,
-    isSuccessAdd: false,
+    addedItem: '',
     userData: null,
     isLoading: false,
-    localCarts: []
+    localCarts: [],
+    notification: {type: '', message: ''},
 }
 
 export const addToCart = createAsyncThunk(
@@ -14,6 +15,19 @@ export const addToCart = createAsyncThunk(
     async (item, id, { rejectWithValue }) => {
         try {
             const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/${id}/cart`, item)
+            return res.data
+        }
+        catch(err) {
+            return rejectWithValue(err.res.data)
+        }
+    }
+)
+
+export const updateCart = createAsyncThunk(
+    'cart/update',
+    async (item, id, { rejectWithValue }) => {
+        try {
+            const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${id}/cart/${item.id}`, item)
             return res.data
         }
         catch(err) {
@@ -40,8 +54,17 @@ export const UserSlice = createSlice({
     initialState,
     reducers: {
         setIsLogged: (state, action) => {state.isLogged = action.payload},
-        setIsAddSuccess: (state, action) => {state.isSuccessAdd = action.payload},
-        updateLocalCarts: (state, action) => {state.localCarts = action.payload}
+        updateLocalCarts: (state, action) => {state.localCarts = action.payload},
+        setAddedItem: (state, action) => {
+            state.addedItem = action.payload.item
+            state.notification.message = action.payload.message
+            state.notification.type = 'success'
+        },
+        updateUserCart: (state, action) => {state.userData.cart = action.payload},
+        clearNotification: (state) => {
+            state.notification.message = ''
+            state.notification.type = ''
+        }
     },
     extraReducers: builder => {
         builder
@@ -56,10 +79,11 @@ export const UserSlice = createSlice({
         .addCase(addToCart.rejected, (state, action) => {
             state.isLoading = false
             if (action.payload) {
-                state.error = action.payload.errorMessage
+                state.notification.message = action.payload.errorMessage
             } else {
-                state.error = action.error.message
+                state.notification.message = action.error.message
             }
+            state.notification.type = 'error'
         })
         .addCase(getUserData.pending, (state) => {
             state.isLoading = true
@@ -71,12 +95,16 @@ export const UserSlice = createSlice({
         .addCase(getUserData.rejected, (state, action) => {
             state.isLoading = false
             if (action.payload) {
-                state.error = action.payload.errorMessage
+                state.notification.message = action.payload.errorMessage
             } else {
-                state.error = action.error.message
+                state.notification.message = action.error.message
             }
+            state.notification.type = 'error'
         })
     },
 })
-export const { setIsAddSuccess, setIsLogged, updateLocalCarts } = UserSlice.actions
+
+export const { setAddedItem, setIsLogged, updateUserCart,
+    updateLocalCarts, incrementQuantity, 
+    clearNotification } = UserSlice.actions
 export default UserSlice.reducer

@@ -9,7 +9,7 @@ import { setActiveColor } from '../../helpers'
 function Header() {
     const { t, i18n } = useTranslation()
     const dispatch = useDispatch()
-    const { isLogged, userData } = useSelector(({user}) => user)
+    const { isLogged, userData, localCarts } = useSelector(({user}) => user)
     const { filter } = useSelector(({ products }) => products.all)
     const cartLength = userData ? userData.carts.length : null
     const [inputSearch, setInputSearch] = useState('')
@@ -38,6 +38,10 @@ function Header() {
         }
     }
 
+    const getLocalCartList = () => {
+        return localCarts.length
+    }
+    
     return ( 
         <header className="header">
             <div className="header-user">
@@ -123,7 +127,7 @@ function Header() {
                             <Link className="cart" to="cart">
                                 <i className="fas fa-shopping-cart"/>
                                 <div className='cart-qnt flex-center bg-blue text-white'>
-                                    {cartLength && isLogged ? cartLength : '0'}
+                                    {isLogged ? cartLength : getLocalCartList()}
                                 </div>
                             </Link>
                         </div>

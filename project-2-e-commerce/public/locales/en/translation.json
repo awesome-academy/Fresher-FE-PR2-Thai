@@ -45,5 +45,15 @@
     "desc": "DESCRIPTION",
     "shopping guide": "SHOPPING GUIDE",
     "products low": "Products",
-    "home low": "Home"
+    "home low": "Home",
+    "cart low": "Carts",
+    "your cart": "Your carts",
+    "product img": "Image",
+    "product name": "Name",
+    "price": "Price",
+    "total": "Total",
+    "delete": "Delete",
+    "total pay": "Total",
+    "let pay": "PAY",
+    "currency": "Usd"
 }

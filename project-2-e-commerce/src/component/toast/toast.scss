@@ -1,0 +1,22 @@
+@import '../../style/variable';
+
+.toast {
+    width: 250px;
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    border: $borderDefault;
+    z-index: 99999;
+}
+.toast-header {
+    height: 36px;
+    border-bottom: $borderDefault;
+    position: relative;
+    background-color: $navBackground;
+}
+.close-toast-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    cursor: pointer;
+}

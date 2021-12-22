@@ -31,8 +31,8 @@ export const carouselResponsive  = {
     }
 }
 
-export const formatPrice = (value) => {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+export const formatPrice = (value, t) => {
+    return `${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')} ${t('currency')}`
 }
 
 export const renderShoppingGuide = () => {
@@ -48,4 +48,12 @@ export const renderShoppingGuide = () => {
             2. Một số trường hợp nhạy cảm: giá trị đơn hàng quá lớn &#38; thời gian giao hàng vào buổi tối địa chỉ giao hàng trong ngõ hoặc có thể dẫn đến nguy hiểm. Chúng tôi sẽ chủ động liên lạc với quý khách để thống nhất lại thời gian giao hàng cụ thể.
         </div>
     )
+}
+
+export const getTotal = (arr) => {
+    return arr.reduce((total, cart) => total + (cart.price*cart.quantity), 0)
+}
+
+export const getAddCartMessage = (item) => {
+    return `Đã thêm ${item.quantity} ${item.name} vào giỏ hàng!`
 }

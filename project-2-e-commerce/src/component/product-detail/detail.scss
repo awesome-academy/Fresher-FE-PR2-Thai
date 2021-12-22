@@ -3,6 +3,7 @@
 .products-detail {
     padding-bottom: 20px;
     border-bottom: $borderDefault;
+    position: relative;
 }
 .detail-img {
     width: 40%;
@@ -40,14 +41,6 @@
 }
 .increment-btn {
     border-bottom: $borderDefault !important;
-}
-.add-cart-btn {
-    width: 200px;
-    font-size: 1.4rem !important;
-    cursor: pointer;
-    &:hover {
-        background-color: $blackColor;
-    }
 }
 .tab-item {
     height: 40px;
