@@ -1,0 +1,44 @@
+@import '../../style/variable';
+
+.pay-info-content {
+    border: $borderDefault;
+    border-radius: 5px;
+    height: 44px;
+}
+.pay-order {
+    &-content {
+        background-color: $orderBackground;
+        margin-right: -15px;
+    }
+    &-btn {
+        background-color: $blueColor;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        &:hover {
+            background-color: $blackColor;
+        }
+    }
+}
+.pay-cart-list {
+    overflow-y: auto;
+    max-height: 200px;
+}
+.pay-cart-item {
+    .item-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 6px;
+        position: relative;
+    }
+    .item-qnt {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: $blueColor;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+    }
+}

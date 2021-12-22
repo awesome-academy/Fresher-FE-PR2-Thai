@@ -55,5 +55,20 @@
     "delete": "Delete",
     "total pay": "Total",
     "let pay": "PAY",
-    "currency": "Usd"
+    "currency": "$",
+    "pay address": "Address",
+    "form email": "Email",
+    "form name": "Full name",
+    "form phone": "Phone number (option)",
+    "form address": "Address (option)",
+    "form note": "Note (option)",
+    "pay-page low": "Payment",
+    "transport": "Transport",
+    "deliver to home": "Deliver to home",
+    "payment on delivery": "Payment on delivery",
+    "orders": "Orders",
+    "temporary": "Temporary",
+    "transportation fee": "Transportation fee",
+    "back to carts page": "Back to carts Page",
+    "order": "ORDER"
 }
