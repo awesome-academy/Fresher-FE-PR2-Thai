@@ -34,5 +34,16 @@
     "sort default": "Default",
     "sort new": "Latest product",
     "sort old": "Oldest product",
-    "brand": "BRANDS"
+    "brand": "BRANDS",
+    "siminar products": "Siminal Products",
+    "detail brand": "Brand",
+    "available": "Available",
+    "detail state": "State",
+    "description": "Description updating",
+    "quantity": "Quantity",
+    "add to cart": "ADD TO CART",
+    "desc": "DESCRIPTION",
+    "shopping guide": "SHOPPING GUIDE",
+    "products low": "Products",
+    "home low": "Home"
 }

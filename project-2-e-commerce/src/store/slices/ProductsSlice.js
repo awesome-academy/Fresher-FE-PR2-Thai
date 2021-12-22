@@ -45,6 +45,14 @@ const initialState = {
     pagination: {
         list: [],
         isLoading: false
+    },
+    productDetail: {
+        isLoading: false,
+        content: [],
+        siminar: {
+            isLoading: false,
+            list: []
+        }
     }
 }
 
@@ -99,6 +107,32 @@ export const getPagination = createAsyncThunk(
         try {
             const stringified = queryString.stringify(filter, {arrayFormat: 'index'})
             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/products?${stringified}`)
+            return res.data
+        }
+        catch(err) {
+            return rejectWithValue(err.res.data)
+        }
+    }
+)
+
+export const getProductById = createAsyncThunk(
+    'product',
+    async (id, { rejectWithValue }) => {
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/products?id=${id}`)
+            return res.data
+        }
+        catch(err) {
+            return rejectWithValue(err.res.data)
+        }
+    }
+)
+
+export const getSiminarProducts = createAsyncThunk(
+    'product/siminar',
+    async (brand, { rejectWithValue }) => {
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/products?brand=${brand}&_limit=4`)
             return res.data
         }
         catch(err) {
@@ -198,6 +232,36 @@ export const ProductsSlice = createSlice({
         })
         .addCase(getPagination.rejected, (state, action) => {
             state.pagination.isLoading = false
+            if (action.payload) {
+                state.error = action.payload.errorMessage
+            } else {
+                state.error = action.error.message
+            }
+        })
+        .addCase(getProductById.pending, (state) => {
+            state.productDetail.isLoading = true
+        })
+        .addCase(getProductById.fulfilled, (state, action) => {
+            state.productDetail.isLoading = false
+            state.productDetail.content = action.payload
+        })
+        .addCase(getProductById.rejected, (state, action) => {
+            state.productDetail.isLoading = false
+            if (action.payload) {
+                state.error = action.payload.errorMessage
+            } else {
+                state.error = action.error.message
+            }
+        })
+        .addCase(getSiminarProducts.pending, (state) => {
+            state.productDetail.siminar.isLoading = true
+        })
+        .addCase(getSiminarProducts.fulfilled, (state, action) => {
+            state.productDetail.siminar.isLoading = false
+            state.productDetail.siminar.list = action.payload
+        })
+        .addCase(getSiminarProducts.rejected, (state, action) => {
+            state.productDetail.siminar.isLoading = false
             if (action.payload) {
                 state.error = action.payload.errorMessage
             } else {

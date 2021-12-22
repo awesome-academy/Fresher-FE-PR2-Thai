@@ -20,7 +20,7 @@ function Products() {
     useEffect(()=> {
         dispatch(getProducts(filter))
         dispatch(getPagination({...filter, _limit: '', _page: ''}))
-    }, [filter])
+    }, [filter, dispatch])
 
     const setActiveLink = (flag) => {
         return flag === typeRendering ? {color: 'green'} : {} 

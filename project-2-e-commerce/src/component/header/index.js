@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { searchByWords, getProducts, getPagination, resetFilter } from '../../store/slices/ProductsSlice'
 import { useTranslation } from 'react-i18next'
-import { setActiveColor } from './helper'
+import { setActiveColor } from '../../helpers'
 
 function Header() {
     const { t, i18n } = useTranslation()
     const dispatch = useDispatch()
-    const { isLogged, carts } = useSelector(({user}) => user)
+    const { isLogged, userData } = useSelector(({user}) => user)
     const { filter } = useSelector(({ products }) => products.all)
-    const cartLength = carts.length
+    const cartLength = userData ? userData.carts.length : null
     const [inputSearch, setInputSearch] = useState('')
     const [currentLang, setCurrentLang] = useState('vi')
 

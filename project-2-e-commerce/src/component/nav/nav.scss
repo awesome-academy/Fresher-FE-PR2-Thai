@@ -1,0 +1,28 @@
+@import '../../style/variable';
+
+.nav-component {
+    height: 50px;
+    background-color: $navBackground;
+    color: $textColor;
+}
+.nav-item {
+    position: relative;
+    padding-right: 12px;
+    padding-left: 12px;
+    &:first-child {
+        padding-left: 0
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        height: 16px;
+        width: 1px;
+        background-color: $mainColor;
+        transform: rotate(10deg);
+        bottom: 2px;
+        right: 0;
+    }
+    &.no-separation::after {
+        width: 0;
+    }
+}
