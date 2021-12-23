@@ -8,6 +8,7 @@ import Register from './component/Register'
 import Account from './component/account'
 import Cart from './component/cart'
 import PayPage from './component/pay-page'
+import ConfirmPage from './component/confirm-page'
 import NotFound from './component/NotFound'
 import { Routes, Route } from "react-router-dom";
 import './style/_global.scss'
@@ -26,6 +27,7 @@ function App() {
                     <Route path="account" element={<Account />}/>
                     <Route path="cart" element={<Cart />}/>
                     <Route path="pay-page" element={<PayPage />}/>
+                    <Route path="confirm-page" element={<ConfirmPage />}/>
                     <Route path="*" element={<NotFound />}/>
                 </Routes>
             </div>

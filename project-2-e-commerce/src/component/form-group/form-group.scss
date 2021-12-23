@@ -4,6 +4,9 @@
     min-height: 44px;
     border: $borderDefault;
     border-radius: 5px;
+    &.error {
+        border: 1px solid $redColor;
+    }
 }
 textarea {
     min-height: 60px;

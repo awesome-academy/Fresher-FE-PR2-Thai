@@ -6,18 +6,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import './cart.scss'
 import CartItem from './CartItem'
 import { formatPrice, getTotal } from '../../helpers'
-import { updateLocalCarts, updateUserCart } from '../../store/slices/UserSlice'
 import { useState } from 'react'
+import { deleteUserCart } from '../../store/slices/UserSlice'
 
 function Cart() {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const { pathname } = useLocation()
-    const { isLogged, userData, localCarts } = useSelector(({user}) => user)
-    const cartList = isLogged ? userData.cart : localCarts
+    const { isLogged, userData } = useSelector(({user}) => user)
+    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
+    const cartList = isLogged ? userData.cart : localCarts ? localCarts : []
     const totalPay = getTotal(cartList)
     const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false)
     const [idCartDelete, setIdCartDelete] = useState('')
+    const [isChange, setIschange] = useState(false)
 
     const getCartDelName = () => {
         const cartDelete = cartList.find(cart => cart.id === idCartDelete)
@@ -32,11 +34,17 @@ function Cart() {
     const handleDelCart = () => {
         const newCarts = cartList.filter(cart => cart.id !== idCartDelete)
         if (isLogged) {
-            dispatch(updateUserCart(newCarts))
+            dispatch(deleteUserCart(userData.id, idCartDelete))
+        } else if (newCarts.length > 0) {
+            localStorage.setItem('local-carts', JSON.stringify(newCarts))
         } else {
-            dispatch(updateLocalCarts(newCarts))
+            localStorage.removeItem('local-carts')
         }
         setIsOpenConfirmModal(false)
+    }
+
+    const changeIsChange = () => {
+        setIschange(!isChange)
     }
 
     return ( 
@@ -60,7 +68,9 @@ function Cart() {
                         </thead>
                         <tbody>
                             {cartList.length ? 
-                                cartList.map(item => <CartItem key={item.id} item={item} getCartDelete={getCartDelete}/>)
+                                cartList.map(item => <CartItem key={item.id} item={item}
+                                    getCartDelete={getCartDelete} changeIsChange={changeIsChange}
+                                />)
                             :
                                 <tr>
                                     <td className="ta-center" colSpan="6">Chưa có sản phẩm</td>

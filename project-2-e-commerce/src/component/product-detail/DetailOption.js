@@ -1,8 +1,8 @@
-import { formatPrice, getAddCartMessage } from '../../helpers'
+import { formatPrice, getAddCartMessage, handleAddToLocal } from '../../helpers'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, setAddedItem, updateLocalCarts } from '../../store/slices/UserSlice'
+import { addToCart, setAddedItem } from '../../store/slices/UserSlice'
 import Toast from '../toast'
 
 function DetailOption({ item }) {
@@ -11,7 +11,8 @@ function DetailOption({ item }) {
     const [hasQuantity, setHasQuantity] = useState(true)
     const { name, img, brand, price, oldPrice } = item
     const dispatch = useDispatch()
-    const { isLogged, addedItem, localCarts, userData, notification } = useSelector(({user}) => user)
+    const { isLogged, addedItem, userData, notification } = useSelector(({user}) => user)
+    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
     const { message, type } = notification
 
     const handleChangeInput = (e) => {
@@ -36,20 +37,6 @@ function DetailOption({ item }) {
         }
     }
 
-    const handleAddToLocal = (item) => {
-            const itemExist = localCarts.find(elm => elm.id === item.id)
-            if (itemExist) {
-                const newCartLocal = localCarts.map(cart => {
-                    if (cart.id === item.id) {
-                        return {...cart, quantity: itemExist.quantity + item.quantity}
-                    } else return cart
-                })
-                dispatch(updateLocalCarts(newCartLocal))
-            } else {
-                dispatch(updateLocalCarts([...localCarts, item]))
-            }
-    }
-
     const handleAddToCart = () => {
         if (quantity > 0) {
             const newCartItem = {...item, quantity: quantity}
@@ -57,7 +44,7 @@ function DetailOption({ item }) {
             if (isLogged) {
                 dispatch(addToCart(newCartItem, userData.id))
             } else {
-                handleAddToLocal(newCartItem)
+                handleAddToLocal(newCartItem, localCarts)
             }
             dispatch(setAddedItem({item: newCartItem, message}))
         } else {

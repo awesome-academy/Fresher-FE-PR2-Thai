@@ -1,0 +1,12 @@
+@import '../../style/variable';
+
+.confirm-page {
+    background-color: $confirmBackground;
+    min-height: 70vh;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.confirm-icon {
+    width: 80px;
+    height: 80px;
+}

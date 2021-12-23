@@ -1,3 +1,6 @@
+import './constants'
+import { EMAIL_REGEX, VNF_REGEX } from './constants'
+
 export const createListNav = (t, path, name) => {
     const flag = path.split('/')
     if (name) {
@@ -60,4 +63,60 @@ export const getAddCartMessage = (item) => {
 
 export const getSum = (a, b) => {
     return Number(a) + Number(b)
+}
+
+export const validatePaymentForm = (obj) => {
+    let errMessage = ''
+    let fieldErrName = ''
+    const objChecked = { email: obj.email, name: obj.name, phone: obj.phone}
+    const objKeys = Object.keys(objChecked)
+    const fieldUndefined = objKeys.find(key => objChecked[key] === '')
+    const isInvalidEmail = EMAIL_REGEX.test(objChecked['email'])
+    const isInvalidPhone = VNF_REGEX.test(objChecked['phone'])
+    if (fieldUndefined) {
+        switch (fieldUndefined) {
+            case 'email':
+                errMessage = `Vui lòng nhập email!`
+                fieldErrName = 'email'
+                break;
+            case 'name':
+                errMessage = `Vui lòng nhập họ và tên!`
+                fieldErrName = 'name'
+                break;
+            default:
+                errMessage = `Vui lòng nhập số điện thoại!`
+                fieldErrName = 'phone'
+                break;
+        }
+    } else if (!isInvalidEmail) {
+        errMessage = `Email nhập không chính xác!`
+        fieldErrName = 'email'
+    } else if (!isInvalidPhone) {
+        errMessage = `Số điện thoại nhập không chính xác!`
+        fieldErrName = 'phone'
+    }
+    return errMessage ? { errMessage, fieldErrName } : ''
+}
+
+export const handleAddToLocal = (item, localCarts) => {
+    if (localCarts) {
+        const itemExist = localCarts.find(elm => elm.id === item.id)
+        if (itemExist) {
+            const newCartLocal = localCarts.map(cart => {
+                if (cart.id === item.id) {
+                    return {...cart, quantity: Number(itemExist.quantity) + item.quantity}
+                }
+                return cart
+            })
+            localStorage.setItem('local-carts', JSON.stringify(newCartLocal))
+        } else {
+            localStorage.setItem('local-carts', JSON.stringify([...localCarts, {...item, quantity: 1}]))
+        }
+    } else {
+        localStorage.setItem('local-carts', JSON.stringify([{...item, quantity: 1}]))
+    }
+}
+
+export const getCodeDate = (date) => {
+    return `${date.getHours()}${date.getMinutes()}${date.getSeconds()}-${date.getDate()}${date.getMonth()}${date.getFullYear()}`
 }
