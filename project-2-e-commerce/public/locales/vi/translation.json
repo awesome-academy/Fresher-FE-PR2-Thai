@@ -54,5 +54,20 @@
     "delete": "Xóa",
     "total pay": "Tổng tiền thanh toán",
     "let pay": "TIẾN HÀNH THANH TOÁN",
-    "currency": "Vnđ"
+    "currency": "đ",
+    "pay address": "Thông tin nhận hàng",
+    "form email": "Email",
+    "form name": "Họ và tên",
+    "form phone": "Số điện thoại (tùy chọn)",
+    "form address": "Địa chỉ (tùy chọn)",
+    "form note": "Ghi chú (tùy chọn)",
+    "pay-page low": "Thanh toán",
+    "transport": "Vận chuyển",
+    "deliver to home": "Giao hàng tận nơi",
+    "payment on delivery": "Thanh toán khi nhận hàng",
+    "orders": "Đơn hàng",
+    "temporary": "Tạm tính",
+    "transportation fee": "Phí vận chuyển",
+    "back to carts page": "Trở về giỏ hàng",
+    "order": "ĐẶT HÀNG"
 }

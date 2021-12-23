@@ -7,7 +7,7 @@ const initialState = {
     userData: null,
     isLoading: false,
     localCarts: [],
-    notification: {type: '', message: ''},
+    notification: {type: '', message: ''}
 }
 
 export const addToCart = createAsyncThunk(

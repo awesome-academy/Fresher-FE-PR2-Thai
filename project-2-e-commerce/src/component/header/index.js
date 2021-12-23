@@ -124,7 +124,7 @@ function Header() {
                             }
                         </div>
                         <div className='header-cart'>
-                            <Link className="cart" to="cart">
+                            <Link className="cart-link" to="cart">
                                 <i className="fas fa-shopping-cart"/>
                                 <div className='cart-qnt flex-center bg-blue text-white'>
                                     {isLogged ? cartLength : getLocalCartList()}

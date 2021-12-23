@@ -1,0 +1,10 @@
+@import '../../style/variable';
+
+.form-input {
+    min-height: 44px;
+    border: $borderDefault;
+    border-radius: 5px;
+}
+textarea {
+    min-height: 60px;
+}

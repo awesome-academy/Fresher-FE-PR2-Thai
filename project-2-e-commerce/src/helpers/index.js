@@ -57,3 +57,7 @@ export const getTotal = (arr) => {
 export const getAddCartMessage = (item) => {
     return `Đã thêm ${item.quantity} ${item.name} vào giỏ hàng!`
 }
+
+export const getSum = (a, b) => {
+    return Number(a) + Number(b)
+}
