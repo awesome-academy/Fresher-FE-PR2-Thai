@@ -1,33 +1,19 @@
 import { Link } from 'react-router-dom'
 import './product-item.scss'
-import { formatPrice, getAddCartMessage } from '../../helpers'
+import { formatPrice, getAddCartMessage, handleAddToLocal } from '../../helpers'
 import { useTranslation } from 'react-i18next'
-import { addToCart, setAddedItem, updateLocalCarts } from '../../store/slices/UserSlice'
+import { addToCart, setAddedItem } from '../../store/slices/UserSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 function ProductsItem({item}) {
     const { name, id, price, oldPrice, img } = item
     const { t } = useTranslation()
-    const { isLogged, userData, localCarts } = useSelector(({user}) => user)
+    const { isLogged, userData } = useSelector(({user}) => user)
+    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
     const dispatch = useDispatch()
     const priceFormat = formatPrice(price, t)
     let oldPriceFormat = oldPrice ? formatPrice(oldPrice, t) : null
     let href = `/products/${id}`
-
-    const handleAddToLocal = (item) => {
-        const itemExist = localCarts.find(elm => elm.id === item.id)
-        if (itemExist) {
-            const newCartLocal = localCarts.map(cart => {
-                if (cart.id === item.id) {
-                    return {...cart, quantity: Number(itemExist.quantity) + item.quantity}
-                }
-                return cart
-            })
-            dispatch(updateLocalCarts(newCartLocal))
-        } else {
-            dispatch(updateLocalCarts([...localCarts, item]))
-        }
-    }
 
     const handleAddToCart = (item) => {
         const newCartItem = {...item, quantity: 1}
@@ -35,7 +21,7 @@ function ProductsItem({item}) {
         if (isLogged) {
             dispatch(addToCart(newCartItem, userData.id))
         } else {
-            handleAddToLocal(newCartItem)
+            handleAddToLocal(newCartItem, localCarts)
         }
         dispatch(setAddedItem({item: newCartItem, message}))
     }

@@ -59,7 +59,7 @@
     "pay address": "Address",
     "form email": "Email",
     "form name": "Full name",
-    "form phone": "Phone number (option)",
+    "form phone": "Phone number",
     "form address": "Address (option)",
     "form note": "Note (option)",
     "pay-page low": "Payment",
@@ -70,5 +70,18 @@
     "temporary": "Temporary",
     "transportation fee": "Transportation fee",
     "back to carts page": "Back to carts Page",
-    "order": "ORDER"
+    "order": "ORDER",
+    "city": "City",
+    "district": "Districts",
+    "payment confirm": "Confirm this order?",
+    "thank for order": "Thank you for orders!",
+    "confirm email message": "A confirmation email has been sent to",
+    "confirm phone message": "We will contact you directly by phone",
+    "support phone message": "If there is an issue with your order, call the hotline:",
+    "trans methods": "Shipping method",
+    "payment methods": "Payment method",
+    "delivery address": "Delivery address",
+    "payment info": "Payment info",
+    "back to products page": "CONTINUE SHOPPING",
+    "go to orders page": "See your orders"
 }

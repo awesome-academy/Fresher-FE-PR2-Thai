@@ -9,9 +9,10 @@ import { setActiveColor } from '../../helpers'
 function Header() {
     const { t, i18n } = useTranslation()
     const dispatch = useDispatch()
-    const { isLogged, userData, localCarts } = useSelector(({user}) => user)
+    const { isLogged, userData } = useSelector(({user}) => user)
+    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
     const { filter } = useSelector(({ products }) => products.all)
-    const cartLength = userData ? userData.carts.length : null
+    const cartLength = userData ? userData.carts.length : localCarts ? localCarts.length : 0
     const [inputSearch, setInputSearch] = useState('')
     const [currentLang, setCurrentLang] = useState('vi')
 
@@ -36,10 +37,6 @@ function Header() {
             i18n.changeLanguage("en")
             setCurrentLang('en')
         }
-    }
-
-    const getLocalCartList = () => {
-        return localCarts.length
     }
     
     return ( 
@@ -127,7 +124,7 @@ function Header() {
                             <Link className="cart-link" to="cart">
                                 <i className="fas fa-shopping-cart"/>
                                 <div className='cart-qnt flex-center bg-blue text-white'>
-                                    {isLogged ? cartLength : getLocalCartList()}
+                                    {cartLength}
                                 </div>
                             </Link>
                         </div>

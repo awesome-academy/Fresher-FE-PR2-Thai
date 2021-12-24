@@ -1,14 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { formatPrice } from "../../helpers";
-import { updateUserCart, updateLocalCarts } from "../../store/slices/UserSlice"
+import { updateUserCart } from "../../store/slices/UserSlice"
 import { useTranslation } from "react-i18next"
 
-function CartItem({ item, getCartDelete }) {
+function CartItem({ item, getCartDelete, changeIsChange }) {
     const { t } = useTranslation()
     const { name, img, price, quantity, id } = item
     const priceFormat = formatPrice(price, t)
     const totalFormat = formatPrice(price*quantity, t)
-    const { isLogged, userData, localCarts } = useSelector(({user}) => user)
+    const { isLogged, userData } = useSelector(({user}) => user)
+    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
     const dispatch = useDispatch()
 
     const handleChangeQnt = (e) => {
@@ -25,12 +26,12 @@ function CartItem({ item, getCartDelete }) {
                 break;
         }
         if (isLogged) {
-            const currentCarts = userData.cart
-            const newCarts = updateCartList(id, value, currentCarts)
-            dispatch(updateUserCart(newCarts))
+            const newCart = {...item, quantity: value}
+            dispatch(updateUserCart(userData.id, newCart))
         } else {
             const newLocalCarts = updateCartList(id, value, localCarts)
-            dispatch(updateLocalCarts(newLocalCarts))
+            localStorage.setItem('local-carts', JSON.stringify(newLocalCarts))
+            changeIsChange()
         }
     }
 
@@ -56,18 +57,18 @@ function CartItem({ item, getCartDelete }) {
             </td>
             <td className="cart-quantity">
                 <div className="quantity-box d-flex jc-center">
-                    <button className="increment-qnt qnt-btn flex-center fs-2 cursor-poiter"
-                        onClick={()=>handleChangeQnt('increment')}
-                    >
-                        &#43;
-                    </button>
-                    <input className="input-qnt w-50" value={quantity} 
-                        onChange={(e) => handleChangeQnt(e)}
-                    />
                     <button className="decrement-qnt qnt-btn flex-center fs-2 cursor-poiter"
                         onClick={()=>handleChangeQnt('decrement')}
                     >
                         &#8722;
+                    </button>
+                    <input className="input-qnt w-50" value={quantity} 
+                        onChange={(e) => handleChangeQnt(e)}
+                    />
+                    <button className="increment-qnt qnt-btn flex-center fs-2 cursor-poiter"
+                        onClick={()=>handleChangeQnt('increment')}
+                    >
+                        &#43;
                     </button>
                 </div>
             </td>

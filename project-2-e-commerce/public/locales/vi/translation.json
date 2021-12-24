@@ -58,7 +58,7 @@
     "pay address": "Thông tin nhận hàng",
     "form email": "Email",
     "form name": "Họ và tên",
-    "form phone": "Số điện thoại (tùy chọn)",
+    "form phone": "Số điện thoại",
     "form address": "Địa chỉ (tùy chọn)",
     "form note": "Ghi chú (tùy chọn)",
     "pay-page low": "Thanh toán",
@@ -69,5 +69,18 @@
     "temporary": "Tạm tính",
     "transportation fee": "Phí vận chuyển",
     "back to carts page": "Trở về giỏ hàng",
-    "order": "ĐẶT HÀNG"
+    "order": "ĐẶT HÀNG",
+    "city": "Thành phố",
+    "district": "Quận - Huyện",
+    "payment confirm": "Xác nhận đơn hàng?",
+    "thank for order": "Cảm ơn bạn đã đặt hàng!",
+    "confirm email message": "Một email xác nhận đã được gửi tới",
+    "confirm phone message": "Chúng tôi sẽ liên lạc trực tiếp lại với bạn qua số điện thoại",
+    "support phone message": "Nếu có sự cố về đơn hàng, hãy gọi đường dây nóng:",
+    "trans methods": "Phương thức vận chuyển",
+    "payment methods": "Phương thức thanh toán",
+    "delivery address": "Địa chỉ nhận hàng",
+    "payment info": "Thông tin mua hàng",
+    "back to products page": "TIẾP TỤC MUA HÀNG",
+    "go to orders page": "Xem đơn hàng của bạn"
 }
