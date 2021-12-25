@@ -3,8 +3,8 @@ import Footer from './component/footer'
 import Home from './component/home'
 import Products from './component/products'
 import ProductsDetail from './component/product-detail'
-import Login from './component/Login'
-import Register from './component/Register'
+import Login from './component/login'
+import Signup from './component/signup'
 import Account from './component/account'
 import Cart from './component/cart'
 import PayPage from './component/pay-page'
@@ -23,7 +23,7 @@ function App() {
                     <Route path="products" element={<Products />}/>
                     <Route path="products/:id" element={<ProductsDetail />}/>
                     <Route path="login" element={<Login />}/>
-                    <Route path="register" element={<Register />}/>
+                    <Route path="signup" element={<Signup />}/>
                     <Route path="account" element={<Account />}/>
                     <Route path="cart" element={<Cart />}/>
                     <Route path="pay-page" element={<PayPage />}/>

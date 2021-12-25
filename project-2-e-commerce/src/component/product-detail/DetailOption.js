@@ -1,8 +1,9 @@
-import { formatPrice, getAddCartMessage, handleAddToLocal } from '../../helpers'
+import { formatPrice, getAddCartMessage, handleAddToLocal,
+    handleAddToUserCarts, getLocalData } from '../../helpers'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, setAddedItem } from '../../store/slices/UserSlice'
+import { notificationSelect, setNotification } from '../../store/slices/NotificationSlice'
 import Toast from '../toast'
 
 function DetailOption({ item }) {
@@ -11,9 +12,8 @@ function DetailOption({ item }) {
     const [hasQuantity, setHasQuantity] = useState(true)
     const { name, img, brand, price, oldPrice } = item
     const dispatch = useDispatch()
-    const { isLogged, addedItem, userData, notification } = useSelector(({user}) => user)
-    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
-    const { message, type } = notification
+    const { message, type } = useSelector(notificationSelect)
+    const { localCarts, isLogged, userData } = getLocalData()
 
     const handleChangeInput = (e) => {
         let newQuantity = Number(e.target.value)
@@ -42,11 +42,11 @@ function DetailOption({ item }) {
             const newCartItem = {...item, quantity: quantity}
             const message = getAddCartMessage(newCartItem)
             if (isLogged) {
-                dispatch(addToCart(newCartItem, userData.id))
+                handleAddToUserCarts(userData, newCartItem, quantity)
             } else {
                 handleAddToLocal(newCartItem, localCarts)
             }
-            dispatch(setAddedItem({item: newCartItem, message}))
+            dispatch(setNotification({type: 'success', message}))
         } else {
             setHasQuantity(false)
         }
@@ -109,7 +109,7 @@ function DetailOption({ item }) {
                     }                   
                 </div>
             </div>
-            {addedItem && message && <Toast type={type} message={message}/>}
+            {message && <Toast type={type} message={message}/>}
         </section>
     );
 }

@@ -1,20 +1,26 @@
 import './header.scss'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { searchByWords, getProducts, getPagination, resetFilter } from '../../store/slices/ProductsSlice'
+import { setCartsLength, updateUserCart } from '../../store/slices/UserSlice'
 import { useTranslation } from 'react-i18next'
-import { setActiveColor } from '../../helpers'
+import { setActiveColor, getLocalData } from '../../helpers'
 
 function Header() {
     const { t, i18n } = useTranslation()
     const dispatch = useDispatch()
-    const { isLogged, userData } = useSelector(({user}) => user)
-    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
+    const { localCarts, isLogged, userData } = getLocalData()
     const { filter } = useSelector(({ products }) => products.all)
+    const { cartsLength } = useSelector(({ user }) => user)
     const cartLength = userData ? userData.carts.length : localCarts ? localCarts.length : 0
     const [inputSearch, setInputSearch] = useState('')
     const [currentLang, setCurrentLang] = useState('vi')
+    const navigate = useNavigate()
+
+    useEffect(()=> {
+        dispatch(setCartsLength(cartLength))
+    }, [cartLength, dispatch])
 
     const handleChange = (e) => {
         setInputSearch(e.target.value)
@@ -38,7 +44,15 @@ function Header() {
             setCurrentLang('en')
         }
     }
-    
+
+    const handleLogout = () => {
+        const { carts, id: userId } = JSON.parse(localStorage.getItem('user-login'))
+        dispatch(updateUserCart({userId, carts}))
+        localStorage.removeItem('is-logged')
+        localStorage.removeItem('user-login')
+        navigate('/login')
+    }
+
     return ( 
         <header className="header">
             <div className="header-user">
@@ -50,13 +64,15 @@ function Header() {
                     <div className='header-option d-flex ai-center'>
                         {isLogged ?
                             <div className='user-option'>
-                                <span className='logout text-white mr-3'>{t('logout')}</span>
+                                <span className='logout text-white mr-3 cursor-poiter'
+                                    onClick={()=>handleLogout()}
+                                >{t('logout')}</span>
                                 <Link to="account" className='text-white'>{t('account')}</Link>
                             </div>
                         :
                             <div className='user-option text-white'>
                                 <Link className="login text-white mr-3" to="login">{t('login')}</Link>
-                                <Link className="register text-white" to="register">{t('register')}</Link>
+                                <Link className="register text-white" to="signup">{t('register')}</Link>
                             </div>
                         }
                         <div className='header-change-lang ml-3'>
@@ -124,7 +140,7 @@ function Header() {
                             <Link className="cart-link" to="cart">
                                 <i className="fas fa-shopping-cart"/>
                                 <div className='cart-qnt flex-center bg-blue text-white'>
-                                    {cartLength}
+                                    {cartsLength}
                                 </div>
                             </Link>
                         </div>
@@ -135,4 +151,4 @@ function Header() {
     )
 }
 
-export default Header
+export default memo(Header)

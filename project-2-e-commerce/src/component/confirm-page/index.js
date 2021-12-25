@@ -1,15 +1,13 @@
-import { useSelector } from 'react-redux';
 import './confirm.scss'
 import successIcon from '../../assets/img/success-icon.png'
 import { useTranslation } from 'react-i18next';
 import CartItem from '../pay-page/CartItem'
-import { formatPrice } from '../../helpers'
+import { formatPrice, getLocalData } from '../../helpers'
 import { Link } from 'react-router-dom'
 
 function ConfirmPage() {
     const { t } = useTranslation()
-    const { isLogged } = useSelector(({user}) => user)
-    const localOrders = JSON.parse(localStorage.getItem('local-orders'))
+    const { isLogged, localOrders } = getLocalData()
     const { list, code, info, total, totalOrders, transFee } = localOrders
     const { name, email, phone, address, district, city } = info
     return ( 
@@ -85,7 +83,7 @@ function ConfirmPage() {
                         </div>
                     </div>
                 </div>
-                <div className='confirm-option d-flex jc-end mt-3'>
+                <div className='confirm-option d-flex jc-end ai-center mt-3'>
                     <Link to='/products' className='back-to-products pay-order-btn fs-2 text-white pl-2 pr-2 pt-1 pb-1'>
                         {t('back to products page')}
                     </Link>

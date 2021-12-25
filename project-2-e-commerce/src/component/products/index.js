@@ -9,6 +9,7 @@ import {
     getProducts, getPagination, 
     setTypeRendering, setCurrentPage, setProductsFilter 
 } from '../../store/slices/ProductsSlice'
+import { notificationSelect } from '../../store/slices/NotificationSlice'
 import Toast from '../toast'
 
 function Products() {
@@ -17,8 +18,8 @@ function Products() {
     const { t } = useTranslation()
     const { all: products, typeRendering, pagination } = useSelector(({products}) => products)
     const { list: renderList, filter, isLoading } = products
-    const { addedItem, notification } = useSelector(({user}) => user)
-    const { type, message } = notification
+    const { type, message } = useSelector(notificationSelect)
+    
     useEffect(()=> {
         dispatch(getProducts(filter))
         dispatch(getPagination({...filter, _limit: '', _page: ''}))
@@ -164,7 +165,7 @@ function Products() {
                     </div>
                 </div>
             </section>
-            {addedItem && message && <Toast type={type} message={message}/>}
+            {message && <Toast type={type} message={message}/>}
         </div>
     );
 }

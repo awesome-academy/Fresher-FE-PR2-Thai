@@ -53,8 +53,8 @@ export const renderShoppingGuide = () => {
     )
 }
 
-export const getTotal = (arr) => {
-    return arr.reduce((total, cart) => total + (cart.price*cart.quantity), 0)
+export const getTotal = (arr = []) => {
+    return arr ? arr.reduce((total, cart) => total + (cart.price*cart.quantity), 0) : 0
 }
 
 export const getAddCartMessage = (item) => {
@@ -65,14 +65,17 @@ export const getSum = (a, b) => {
     return Number(a) + Number(b)
 }
 
-export const validatePaymentForm = (obj) => {
+export const validateForm = (obj) => {
     let errMessage = ''
     let fieldErrName = ''
-    const objChecked = { email: obj.email, name: obj.name, phone: obj.phone}
-    const objKeys = Object.keys(objChecked)
-    const fieldUndefined = objKeys.find(key => objChecked[key] === '')
-    const isInvalidEmail = EMAIL_REGEX.test(objChecked['email'])
-    const isInvalidPhone = VNF_REGEX.test(objChecked['phone'])
+    const objKeys = Object.keys(obj)
+    const fieldsNotRequire = ['city', 'district', 'address', 'note'] 
+    const fieldUndefined = objKeys.find(key => 
+        !fieldsNotRequire.includes(key) && obj[key] === ''
+    )
+    const isInvalidEmail = EMAIL_REGEX.test(obj['email'])
+    const isInvalidPhone = objKeys.includes('phone') ? VNF_REGEX.test(obj['phone']) : null
+    const isInvalidPassword = objKeys.includes('password') ? obj['password'].length >= 6 : null
     if (fieldUndefined) {
         switch (fieldUndefined) {
             case 'email':
@@ -83,17 +86,26 @@ export const validatePaymentForm = (obj) => {
                 errMessage = `Vui lòng nhập họ và tên!`
                 fieldErrName = 'name'
                 break;
-            default:
+            case 'phone':
                 errMessage = `Vui lòng nhập số điện thoại!`
                 fieldErrName = 'phone'
+                break;
+            case 'password':
+                errMessage = `Vui lòng nhập password!`
+                fieldErrName = 'password'
+                break;
+            default:
                 break;
         }
     } else if (!isInvalidEmail) {
         errMessage = `Email nhập không chính xác!`
         fieldErrName = 'email'
-    } else if (!isInvalidPhone) {
-        errMessage = `Số điện thoại nhập không chính xác!`
+    } else if (!isInvalidPhone && objKeys.includes('phone')) {
+        errMessage = `Số điện thoại chưa chính xác!`
         fieldErrName = 'phone'
+    } else if (!isInvalidPassword && objKeys.includes('password')) {
+        errMessage = `Mật khẩu quá ngắn (tối thiểu 6 kí tự)!`
+        fieldErrName = 'password'
     }
     return errMessage ? { errMessage, fieldErrName } : ''
 }
@@ -119,4 +131,55 @@ export const handleAddToLocal = (item, localCarts) => {
 
 export const getCodeDate = (date) => {
     return `${date.getHours()}${date.getMinutes()}${date.getSeconds()}-${date.getDate()}${date.getMonth()}${date.getFullYear()}`
+}
+
+export const renderSignError = (errorCode, setNotification, dispatch) => {
+    switch (errorCode) {
+        case 'auth/wrong-password':
+            dispatch(setNotification({type: 'error', message: 'Mật khẩu không đúng!'}))
+            break;
+        case 'auth/user-not-found':
+        case "Cannot read properties of undefined (reading 'data')":
+            dispatch(setNotification({type: 'error', message: 'Email không tồn tại!'}))
+            break;
+        case 'auth/email-already-in-use':
+            dispatch(setNotification({type: 'error', message: 'Email đã tồn tại!'}))
+            break;
+        default:
+            dispatch(setNotification({type: 'error', message: 'Có lỗi không xác định!'}))
+            break;
+    }
+}
+
+export const renderSignSuccess = (message, setNotification, dispatch) => {
+    dispatch(setNotification({type: 'success', message: message}))
+}
+
+export const handleAddToUserCarts = (userData, newCartItem, quantity = 1) => {
+    let newUserData
+    if (userData.carts.length > 0) {
+        const itemExisted = userData.carts.find(item => item.id === newCartItem.id)
+        let newCarts
+        if (itemExisted) {
+            newCarts = userData.carts.map(cart => {
+                if (cart.id === newCartItem.id) return {...cart, quantity: cart.quantity += quantity}
+                return cart
+            })
+        } else {
+            userData.carts.push(newCartItem)
+            newCarts = userData.carts
+        }
+        newUserData = {...userData, carts: newCarts}
+    } else {
+        newUserData = {...userData, carts: [newCartItem]}
+    }
+    localStorage.setItem('user-login', JSON.stringify(newUserData))
+}
+
+export const getLocalData = () => {
+    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
+    const userData = JSON.parse(localStorage.getItem('user-login'))
+    const isLogged = JSON.parse(localStorage.getItem('is-logged'))
+    const localOrders = JSON.parse(localStorage.getItem('local-orders'))
+    return { localCarts, userData, isLogged, localOrders }
 }

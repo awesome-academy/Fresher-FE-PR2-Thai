@@ -1,7 +1,7 @@
 import './toast.scss'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { clearNotification } from '../../store/slices/UserSlice'
+import { clearNotification } from '../../store/slices/NotificationSlice'
 
 function Toast({ type, message }) {
     const dispatch = useDispatch()

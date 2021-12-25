@@ -4,19 +4,20 @@ import { useTranslation } from 'react-i18next'
 import NavComponent from '../nav'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItem from './CartItem'
-import { formatPrice, getTotal, getSum, createListNav, validatePaymentForm, getCodeDate } from '../../helpers'
+import { formatPrice, getTotal, getSum, createListNav,
+    validateForm, getCodeDate, getLocalData } from '../../helpers'
 import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import { addUserOrders } from '../../store/slices/UserSlice'
+import { addUserOrders, updateUserCart } from '../../store/slices/UserSlice'
 
 function PayPage() {
     const { t } = useTranslation()
     const dispatch = useDispatch()
     const { pathname } = useLocation()
-    const { isLogged, userData, paymentForm } = useSelector(({user}) => user)
-    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
-    const cartList = isLogged ? userData.cart : localCarts
-    const transFee = cartList.length ? 40000 : 0
+    const { paymentForm } = useSelector(({user}) => user)
+    const { localCarts, isLogged, userData } = getLocalData()
+    const cartList = isLogged ? userData.carts : localCarts
+    const transFee = cartList && cartList.length ? 40000 : 0
     const totalOrders = formatPrice(getSum(getTotal(cartList), transFee), t)
     const fee = formatPrice(transFee, t)
     const total = formatPrice(getTotal(cartList), t)
@@ -24,9 +25,9 @@ function PayPage() {
     const [addressFormError, setAddressFormError] = useState('')
 
     const checkValidateForm = () => {
-        const addressFormError = validatePaymentForm(paymentForm)
-        if (addressFormError) {
-            setAddressFormError({...addressFormError, clearErrorEffect: ()=>setAddressFormError('')})
+        const formError = validateForm(paymentForm)
+        if (formError) {
+            setAddressFormError({...formError, clearErrorEffect: ()=>setAddressFormError('')})
         } else {
             setIsOpenConfirmModal(true)
         }
@@ -43,9 +44,17 @@ function PayPage() {
             code: code,
             info: paymentForm,
         }
-        if (isLogged) dispatch(addUserOrders(userData.id, newOrders))
+        if (isLogged) {
+            const newOrdersList = userData.orders.concat(newOrders)
+            const userId = userData.id
+            const newUserData = {...userData, carts: []}
+            localStorage.setItem('user-login', JSON.stringify(newUserData))
+            dispatch(addUserOrders({userId, newOrdersList}))
+            dispatch(updateUserCart({userId, carts: []}))
+        }
         localStorage.setItem('local-orders', JSON.stringify(newOrders))
         localStorage.removeItem('local-carts')
+        setIsOpenConfirmModal(false)
     }
 
     return ( 
@@ -57,11 +66,11 @@ function PayPage() {
                         <h3 className='mb-2 fs-2'>{t('pay address')}</h3>
                         <form className='address-form'>
                             <FormGroup type='text' name='email' placeholder={t('form email')}
-                                addressFormError={addressFormError}/>
+                                formError={addressFormError}/>
                             <FormGroup type='text' name='name' placeholder={t('form name')}
-                                addressFormError={addressFormError}/>
+                                formError={addressFormError}/>
                             <FormGroup type='text' name='phone' placeholder={t('form phone')}
-                                addressFormError={addressFormError}/>
+                                formError={addressFormError}/>
                             <FormGroup type='text' name='address' placeholder={t('form address')}/>
                             <FormGroup type='select-city'/>
                             <FormGroup type='select-districts'/>
@@ -82,7 +91,7 @@ function PayPage() {
                     <div className='pay-order lg-4 sm-12'>
                         <div className='pay-order-content b-default'>
                             <div className='pay-order-heading bb-default p-2'>
-                                <h3 className='fs-2'>{`${t('orders')} (${cartList.length})`}</h3>
+                                <h3 className='fs-2'>{`${t('orders')} (${cartList && cartList.length})`}</h3>
                             </div>
                             <div className='pay-order-body p-2'>
                                 <div className='pay-cart-list bb-default pt-1 pb-1'>
