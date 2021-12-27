@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const initialState = {
-    isLogged: false,
     isLoading: false,
     cityArray: null,
     districts: null,
@@ -28,7 +27,8 @@ const initialState = {
     isLogging: false,
     isSignup: false,
     cartsLength: 0,
-    error: ''
+    error: '',
+    userLogin: ''
 }
 
 export const addUser = createAsyncThunk(
@@ -120,6 +120,7 @@ export const UserSlice = createSlice({
             const localUser = deletePassword(action.payload)
             localStorage.setItem('user-login', JSON.stringify(localUser))
             localStorage.setItem('is-logged', JSON.stringify(true))
+            state.userLogin = action.payload
         })
         .addCase(getUserData.rejected, (state, action) => {
             state.isLoading = false
@@ -147,7 +148,7 @@ export const UserSlice = createSlice({
     },
 })
 
-export const { setIsLogged, setDistricsArray, setPaymentForm,
+export const { setDistricsArray, setPaymentForm,
     setIsLogging, setIsSignup, setLoginForm,
     setSignupForm, setCartsLength } = UserSlice.actions
     

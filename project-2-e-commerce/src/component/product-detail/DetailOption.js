@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { notificationSelect, setNotification } from '../../store/slices/NotificationSlice'
+import { setCartsLength } from '../../store/slices/UserSlice'
 import Toast from '../toast'
 
 function DetailOption({ item }) {
@@ -41,11 +42,15 @@ function DetailOption({ item }) {
         if (quantity > 0) {
             const newCartItem = {...item, quantity: quantity}
             const message = getAddCartMessage(newCartItem)
+            let newCartsLength
             if (isLogged) {
                 handleAddToUserCarts(userData, newCartItem, quantity)
+                newCartsLength = JSON.parse(localStorage.getItem('user-login')).carts.length
             } else {
                 handleAddToLocal(newCartItem, localCarts)
+                newCartsLength = JSON.parse(localStorage.getItem('local-carts')).length
             }
+            dispatch(setCartsLength(newCartsLength))
             dispatch(setNotification({type: 'success', message}))
         } else {
             setHasQuantity(false)

@@ -1,5 +1,4 @@
-import './constants'
-import { EMAIL_REGEX, VNF_REGEX } from './constants'
+import { EMAIL_REGEX, VNF_REGEX, ACTiVE_COLOR } from './constants'
 
 export const createListNav = (t, path, name) => {
     const flag = path.split('/')
@@ -12,7 +11,7 @@ export const createListNav = (t, path, name) => {
 
 export const setActiveColor = ({ isActive }) => {
     return {
-        color : isActive ? "red" : ""
+        color : isActive ? ACTiVE_COLOR : ""
     }
 }
 
@@ -130,7 +129,13 @@ export const handleAddToLocal = (item, localCarts) => {
 }
 
 export const getCodeDate = (date) => {
-    return `${date.getHours()}${date.getMinutes()}${date.getSeconds()}-${date.getDate()}${date.getMonth()}${date.getFullYear()}`
+    const dateFormat = new Date(date)
+    return `${dateFormat.getHours()}${dateFormat.getMinutes()}${dateFormat.getSeconds()}-${dateFormat.getDate()}${dateFormat.getMonth()}${dateFormat.getFullYear()}`
+}
+
+export const getDate = (date) => {
+    const flag = new Date(date)
+    return `${flag.getHours()}h${flag.getMinutes()}p ngày ${flag.getDate()}/${flag.getMonth()+1}/${flag.getFullYear()}`
 }
 
 export const renderSignError = (errorCode, setNotification, dispatch) => {
@@ -139,7 +144,6 @@ export const renderSignError = (errorCode, setNotification, dispatch) => {
             dispatch(setNotification({type: 'error', message: 'Mật khẩu không đúng!'}))
             break;
         case 'auth/user-not-found':
-        case "Cannot read properties of undefined (reading 'data')":
             dispatch(setNotification({type: 'error', message: 'Email không tồn tại!'}))
             break;
         case 'auth/email-already-in-use':
@@ -149,10 +153,6 @@ export const renderSignError = (errorCode, setNotification, dispatch) => {
             dispatch(setNotification({type: 'error', message: 'Có lỗi không xác định!'}))
             break;
     }
-}
-
-export const renderSignSuccess = (message, setNotification, dispatch) => {
-    dispatch(setNotification({type: 'success', message: message}))
 }
 
 export const handleAddToUserCarts = (userData, newCartItem, quantity = 1) => {
@@ -182,4 +182,9 @@ export const getLocalData = () => {
     const isLogged = JSON.parse(localStorage.getItem('is-logged'))
     const localOrders = JSON.parse(localStorage.getItem('local-orders'))
     return { localCarts, userData, isLogged, localOrders }
+}
+
+export const creatAddressText = (info) => {
+    const { address, district, city } = info
+    return `${address}${district ? `, ${district}` : ''}${city ? `, ${city}` : ''}`
 }
