@@ -96,6 +96,19 @@ export const addUserOrders = createAsyncThunk(
     }
 )
 
+export const updateUser = createAsyncThunk(
+    'user/update',
+    async ({userId, option}, { rejectWithValue }) => {
+        try {
+            const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {[option.fieldName]: option.value})
+            return res.data
+        }
+        catch(err) {
+            return rejectWithValue(err.res.data)
+        }
+    }
+)
+
 export const UserSlice = createSlice({
     name: 'user',
     initialState,
@@ -138,6 +151,24 @@ export const UserSlice = createSlice({
             state.cityArray = action.payload
         })
         .addCase(getCityArray.rejected, (state, action) => {
+            state.isLoading = false
+            if (action.payload) {
+                state.error = action.payload.errorMessage
+            } else {
+                state.error = action.error.message
+            }
+        })
+        .addCase(updateUser.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(updateUser.fulfilled, (state, action) => {
+            state.isLoading = false
+            const deletePassword = ({password, ...obj}) => ({...obj})
+            const localUser = deletePassword(action.payload)
+            localStorage.setItem('user-login', JSON.stringify(localUser))
+            state.userLogin = action.payload
+        })
+        .addCase(updateUser.rejected, (state, action) => {
             state.isLoading = false
             if (action.payload) {
                 state.error = action.payload.errorMessage

@@ -112,5 +112,10 @@
     "date": "Ngày",
     "orders value": "Giá trị đơn hàng",
     "pay info": "TT Thanh toán",
-    "have not orders": "Chưa có đơn hàng"
+    "have not orders": "Chưa có đơn hàng",
+    "cancel": "Hủy",
+    "submit": "Submit",
+    "name": "Họ và tên",
+    "phone": "Số điện thoại",
+    "please enter": "Vui lòng nhập"
 }

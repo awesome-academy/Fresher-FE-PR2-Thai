@@ -6481,46 +6481,44 @@
   ],
   "users": [
     {
-      "email": "duythai120696@gmail.com",
+      "email": "manh11112233@gmail.com",
       "password": "1111111",
-      "id": "hrqLyyic9ye1bgIjI3kYRqD2l7C2",
+      "id": "vtaUkZX9N9ZXvE52I2WBiuZD5Ru1",
       "carts": [
         {
-          "name": "Gấu bông Teddy cute",
-          "id": "1",
-          "price": 168000,
+          "name": "Quà tặng chocolate",
+          "id": "3",
+          "price": 600000,
           "oldPrice": "",
-          "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/03.jpg?v=1631014826000",
-          "brand": "Teddy",
-          "color": "blue",
-          "size": "25cm",
+          "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/08.jpg?v=1525922722587",
+          "brand": "Vimax",
+          "color": "",
+          "size": "",
           "type": [
-            "new",
-            "special"
+            "new"
           ],
-          "desc": "Gấu Teddy cute là dòng gấu nhồi bông lông xoắn hoa hồng có màu sắc được nhiều bạn gái yêu thích nhất. Quá khó cho bạn để chọn được một con gấu bông teddy trong hàng ngàn gấu Teddy hiện nay. Con thú nhồi bông nào cũng to lớn con nào cùng đẹp xinh con nào cũng dễ thương đáng yêu cả. Gợi ý cho bạn một lựa chọn thông minh khi rước em gấu bông teddy 1m2 về nhà. Không giống với những chú gấu buồn tâm trạng hoặc trẻ trung sang trọng thì gấu này lại dịu hiền ít nói như mang nhiều suy tư vậy, gương mặt cười rạng rỡ truyền niềm vui cho mọi người. Shop có các loại 90cm - 1m - 1m2 - 1m3 - 1m4 - 1m6 và 2m. Có các màu như nâu socola, nâu cafe sữa, kem, hồng, tím. Các bạn vui lòng liên hệ trước với Shop, Shop sẽ gọi Video để các bạn chọn. Shop hút chân không gấu giảm chi phí vận chuyển. Kích cở gấu tính theo khổ vải nhé.",
-          "quantity": 3
+          "desc": "",
+          "quantity": 1
+        },
+        {
+          "name": "Vali đẹp cute",
+          "id": "4",
+          "price": 800000,
+          "oldPrice": "",
+          "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/11c6fe4ca42878460fae66ca86d30f.jpg",
+          "brand": "DG",
+          "color": "",
+          "size": "",
+          "type": [
+            "new"
+          ],
+          "desc": "Vali kéo được thiết kế đẹp, màu sắc và họa tiết đa dạng, có bánh xe và tay kéo tiện dụng, giúp vận chuyển dễ dàng. Tải trọng khoảng 7 đến 8kg, giúp bạn mang theo được nhiều đồ đạc hơn khi đi du lịch, công tác. Chất liệu nhựa dẻo chắc chắn, chống thấm, bảo đảm an toàn tuyệt đối cho đồ đạc bên trong. Khách hàng bù thêm 500.000 VNĐ để lấy vali size S kích thước 55*22*33cm cho tất cả các mẫu.",
+          "quantity": 1
         }
       ],
       "orders": [
         {
           "list": [
-            {
-              "name": "Gấu bông Teddy cute",
-              "id": "1",
-              "price": 168000,
-              "oldPrice": "",
-              "img": "https://bizweb.dktcdn.net/thumb/large/100/312/616/products/03.jpg?v=1631014826000",
-              "brand": "Teddy",
-              "color": "blue",
-              "size": "25cm",
-              "type": [
-                "new",
-                "special"
-              ],
-              "desc": "Gấu Teddy cute là dòng gấu nhồi bông lông xoắn hoa hồng có màu sắc được nhiều bạn gái yêu thích nhất. Quá khó cho bạn để chọn được một con gấu bông teddy trong hàng ngàn gấu Teddy hiện nay. Con thú nhồi bông nào cũng to lớn con nào cùng đẹp xinh con nào cũng dễ thương đáng yêu cả. Gợi ý cho bạn một lựa chọn thông minh khi rước em gấu bông teddy 1m2 về nhà. Không giống với những chú gấu buồn tâm trạng hoặc trẻ trung sang trọng thì gấu này lại dịu hiền ít nói như mang nhiều suy tư vậy, gương mặt cười rạng rỡ truyền niềm vui cho mọi người. Shop có các loại 90cm - 1m - 1m2 - 1m3 - 1m4 - 1m6 và 2m. Có các màu như nâu socola, nâu cafe sữa, kem, hồng, tím. Các bạn vui lòng liên hệ trước với Shop, Shop sẽ gọi Video để các bạn chọn. Shop hút chân không gấu giảm chi phí vận chuyển. Kích cở gấu tính theo khổ vải nhé.",
-              "quantity": 1
-            },
             {
               "name": "Nước hoa DG",
               "id": "2",
@@ -6537,23 +6535,44 @@
               "quantity": 1
             }
           ],
-          "total": 268000,
+          "total": 100000,
           "transFee": 40000,
-          "totalOrders": 308000,
-          "code": "hrqLyyic9ye1bgIjI3kYRqD2l7C2-11348-27112021",
+          "totalOrders": 140000,
+          "code": "vtaUkZX9N9ZXvE52I2WBiuZD5Ru1-123453-27112021",
           "info": {
-            "email": "duythai120696@gmail.com",
-            "name": "Thái",
-            "phone": "0974521617",
-            "address": "Phú Đô, Nam Từ Liêm, Hà Nội",
-            "city": "",
+            "email": "manh11@gmail.com",
+            "name": "Mạnh",
+            "phone": "0999888888",
+            "address": "đại mỗ",
+            "city": "Thành phố Hà Nội",
             "district": "",
             "note": ""
-          }
+          },
+          "date": "2021-12-27T05:34:53.178Z"
         }
       ],
-      "phone": "0974521617",
-      "name": "Thái"
+      "phone": "0999888772",
+      "name": "Mạnh",
+      "address": [
+        {
+          "name": "Thái",
+          "address": "Phú Đô, Nam Từ Liêm, Hà Nội",
+          "phone": "0974521617",
+          "id": "19221-27112021"
+        },
+        {
+          "name": "Mạnh",
+          "address": "đại mỗ",
+          "phone": "0987655559",
+          "id": "19237-27112021"
+        },
+        {
+          "name": "Thái",
+          "address": "quảng ninh",
+          "phone": "0999888888",
+          "id": "19324-27112021"
+        }
+      ]
     }
   ]
 }
