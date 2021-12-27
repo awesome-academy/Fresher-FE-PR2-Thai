@@ -46,7 +46,7 @@ function Header() {
     }
 
     const handleLogout = () => {
-        const { carts, id: userId } = JSON.parse(localStorage.getItem('user-login'))
+        const { carts, id: userId } = userData
         dispatch(updateUserCart({userId, carts}))
         localStorage.removeItem('is-logged')
         localStorage.removeItem('user-login')
@@ -67,7 +67,7 @@ function Header() {
                                 <span className='logout text-white mr-3 cursor-poiter'
                                     onClick={()=>handleLogout()}
                                 >{t('logout')}</span>
-                                <Link to="account" className='text-white'>{t('account')}</Link>
+                                <Link to="account/info" className='text-white'>{t('account')}</Link>
                             </div>
                         :
                             <div className='user-option text-white'>

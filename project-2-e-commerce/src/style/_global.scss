@@ -58,6 +58,9 @@ ul {
 .bg-white {
     background-color: $whiteColor;
 }
+.bg-account {
+    background-color: $accountColor;
+}
 .bg-blue {
     background-color: $blueColor;
 }
@@ -72,6 +75,12 @@ ul {
 }
 .b-green {
     border: 1px solid $greenColor;
+}
+.b-none {
+    border: none;
+}
+.bt-default {
+    border-top: $borderDefault;
 }
 .flex-center {
     display: flex;
@@ -195,6 +204,9 @@ ul {
 .ta-center {
     text-align: center;
 }
+.ta-left {
+    text-align: left;
+}
 .cursor-poiter {
     cursor: pointer;
 }
@@ -240,6 +252,11 @@ ul {
 }
 .lg-6 {
     width: 50%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.lg-9 {
+    width: 75%;
     padding-left: 15px;
     padding-right: 15px;
 }

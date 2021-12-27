@@ -43,11 +43,12 @@ function PayPage() {
             totalOrders: getSum(getTotal(cartList), transFee), 
             code: code,
             info: paymentForm,
+            date: new Date()
         }
         if (isLogged) {
-            const newOrdersList = userData.orders.concat(newOrders)
+            const newOrdersList = userData.orders.concat([newOrders])
             const userId = userData.id
-            const newUserData = {...userData, carts: []}
+            const newUserData = {...userData, carts: [], orders: newOrdersList}
             localStorage.setItem('user-login', JSON.stringify(newUserData))
             dispatch(addUserOrders({userId, newOrdersList}))
             dispatch(updateUserCart({userId, carts: []}))

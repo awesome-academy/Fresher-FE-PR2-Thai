@@ -88,7 +88,7 @@ function ConfirmPage() {
                         {t('back to products page')}
                     </Link>
                     {isLogged ?
-                        <Link to='/orders' className="text-green fs-default ml-2">{t('go to orders page')} &#62;</Link> 
+                        <Link to='/account/orders' className="text-green fs-default ml-2">{t('go to orders page')} &#62;</Link> 
                     :
                         <Link to='/login' className="text-green pay-order-btn fs-2 ml-2 pl-2 pr-2 pt-1 pb-1 bg-white">{t('login')}</Link>
                     }

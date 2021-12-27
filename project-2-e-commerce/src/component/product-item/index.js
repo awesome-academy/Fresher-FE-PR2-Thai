@@ -4,6 +4,7 @@ import { formatPrice, getAddCartMessage, handleAddToLocal,
     handleAddToUserCarts, getLocalData } from '../../helpers'
 import { useTranslation } from 'react-i18next'
 import { setNotification } from '../../store/slices/NotificationSlice'
+import { setCartsLength } from '../../store/slices/UserSlice'
 import { useDispatch } from 'react-redux'
 
 function ProductsItem({item}) {
@@ -18,11 +19,15 @@ function ProductsItem({item}) {
     const handleAddToCart = (item) => {
         const newCartItem = {...item, quantity: 1}
         const message = getAddCartMessage(newCartItem)
+        let newCartsLength
         if (isLogged) {
             handleAddToUserCarts(userData, newCartItem)
+            newCartsLength = JSON.parse(localStorage.getItem('user-login')).carts.length
         } else {
             handleAddToLocal(newCartItem, localCarts)
+            newCartsLength = JSON.parse(localStorage.getItem('local-carts')).length
         }
+        dispatch(setCartsLength(newCartsLength))
         dispatch(setNotification({type: 'success', message}))
     }
 
