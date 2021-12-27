@@ -82,5 +82,15 @@
     "delivery address": "Địa chỉ nhận hàng",
     "payment info": "Thông tin mua hàng",
     "back to products page": "TIẾP TỤC MUA HÀNG",
-    "go to orders page": "Xem đơn hàng của bạn"
+    "go to orders page": "Xem đơn hàng của bạn",
+    "login low": "Đăng nhập tài khoản",
+    "signup low": "Đăng ký tài khoản",
+    "user login": "Khách hàng đăng nhập",
+    "login message": "Nếu bạn có một tài khoản, xin vui lòng đăng nhập",
+    "user info": "Thông tin cá nhân",
+    "signup here": "Đăng ký tại đây",
+    "have not account": "Bạn chưa có tài khoản",
+    "signup": "Đăng ký",
+    "have an account": "Bạn đã có tài khoản?",
+    "login here": "Đăng nhập tại đây"
 }

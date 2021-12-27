@@ -1,14 +1,15 @@
+import './home.scss'
 import NewProducts from './NewProducts'
 import SpecialProducts from './SpecialProducts'
-import './home.scss'
 import banners from '../../assets/img/banners.jpg'
 import Brands from './Brands'
 import Toast from '../toast'
 import { useSelector } from 'react-redux'
+import { notificationSelect } from '../../store/slices/NotificationSlice'
 
 function Home() {
-    const { addedItem, notification } = useSelector(({user}) => user)
-    const { type, message } = notification
+    const { type, message } = useSelector(notificationSelect)
+
     return ( 
         <div className="home">
             <div className="home-banners">
@@ -19,7 +20,7 @@ function Home() {
                 <SpecialProducts/>
             </section>
             <Brands/>
-            {addedItem && message && <Toast type={type} message={message}/>}
+            {message && <Toast type={type} message={message}/>}
         </div>
     );
 }

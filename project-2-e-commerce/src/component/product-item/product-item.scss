@@ -5,6 +5,15 @@
     .add-cart-btn {
         height: 36px;
     }
+    &:hover{
+        .product-link {
+            overflow: hidden;
+        }
+        img {
+            transform: scale(1.05)!important;
+            transition: all 0.3s ease;
+        }
+    }
 }
 .product-info {
     padding-top: 20px;

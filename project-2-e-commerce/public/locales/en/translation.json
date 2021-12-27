@@ -83,5 +83,15 @@
     "delivery address": "Delivery address",
     "payment info": "Payment info",
     "back to products page": "CONTINUE SHOPPING",
-    "go to orders page": "See your orders"
+    "go to orders page": "See your orders",
+    "login low": "Login account",
+    "signup low": "Signup account",
+    "user login": "User login",
+    "login message": "If you have an account, please login",
+    "user info": "personal information",
+    "signup here": "Signup here",
+    "have not account": "You have not an account",
+    "signup": "signup",
+    "have an account": "You have an account??",
+    "login here": "Login here"
 }

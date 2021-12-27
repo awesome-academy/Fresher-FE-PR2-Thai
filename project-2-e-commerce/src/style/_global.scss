@@ -43,6 +43,12 @@ ul {
 .text-blue {
     color: $blueColor;
 }
+.text-big {
+    text-transform: uppercase;
+}
+.td-under {
+    text-decoration: underline;
+}
 .bg-main {
     background-color: $mainColor;
 }
@@ -60,6 +66,9 @@ ul {
 }
 .bb-default {
     border-bottom: $borderDefault;
+}
+.bb-black {
+    border-bottom: 1px solid $blackColor;
 }
 .b-green {
     border: 1px solid $greenColor;
@@ -199,9 +208,16 @@ ul {
     background-color: $mainColor;
     font-size: 1.4rem;
     color: $whiteColor;
+    border: none;
     &:hover {
         background-color: $blackColor;
     }
+}
+.sign-form {
+    width: 100%;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .add-cart-btn {
     width: 200px;

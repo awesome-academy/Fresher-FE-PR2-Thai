@@ -3,10 +3,7 @@ import axios from 'axios'
 
 const initialState = {
     isLogged: false,
-    addedItem: '',
-    userData: null,
     isLoading: false,
-    notification: {type: '', message: ''},
     cityArray: null,
     districts: null,
     paymentForm: {
@@ -17,14 +14,28 @@ const initialState = {
         city: '',
         district: '',
         note: ''
-    }
+    },
+    loginForm: {
+        email: '',
+        password: ''
+    },
+    signupForm: {
+        email: '',
+        password: '',
+        name: '',
+        phone: ''
+    },
+    isLogging: false,
+    isSignup: false,
+    cartsLength: 0,
+    error: ''
 }
 
-export const addToCart = createAsyncThunk(
-    'cart/post',
-    async (item, id, { rejectWithValue }) => {
+export const addUser = createAsyncThunk(
+    'user/post',
+    async (item, { rejectWithValue }) => {
         try {
-            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/${id}/cart`, item)
+            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/users`, item)
             return res.data
         }
         catch(err) {
@@ -35,22 +46,9 @@ export const addToCart = createAsyncThunk(
 
 export const updateUserCart = createAsyncThunk(
     'cart/update',
-    async (userId, cart, { rejectWithValue }) => {
+    async ({ userId, carts }, { rejectWithValue }) => {
         try {
-            const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}/cart/${cart.id}`, cart)
-            return res.data
-        }
-        catch(err) {
-            return rejectWithValue(err.res.data)
-        }
-    }
-)
-
-export const deleteUserCart = createAsyncThunk(
-    'cart/delele',
-    async (userId, cartId, { rejectWithValue }) => {
-        try {
-            const res = await axios.delete(`${process.env.REACT_APP_BASE_URL}/users/${userId}/cart/${cartId}`)
+            const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {carts})
             return res.data
         }
         catch(err) {
@@ -63,7 +61,7 @@ export const getUserData = createAsyncThunk(
     'user/get',
     async (id, { rejectWithValue }) => {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users?id=${id}`)
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/${id}`)
             return res.data
         }
         catch(err) {
@@ -87,9 +85,9 @@ export const getCityArray = createAsyncThunk(
 
 export const addUserOrders = createAsyncThunk(
     'order/post',
-    async (id, item, { rejectWithValue }) => {
+    async ({userId, newOrdersList}, { rejectWithValue }) => {
         try {
-            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/${id}/order`, item)
+            const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {orders: newOrdersList})
             return res.data
         }
         catch(err) {
@@ -103,52 +101,33 @@ export const UserSlice = createSlice({
     initialState,
     reducers: {
         setIsLogged: (state, action) => {state.isLogged = action.payload},
-        setAddedItem: (state, action) => {
-            state.addedItem = action.payload.item
-            state.notification.message = action.payload.message
-            state.notification.type = 'success'
-        },
-        clearNotification: (state) => {
-            state.notification.message = ''
-            state.notification.type = ''
-        },
         setDistricsArray: (state, action) => {state.districts = action.payload},
         setPaymentForm: (state, action) => {state.paymentForm = action.payload},
+        setIsLogging: (state, action) => {state.isLogging = action.payload},
+        setIsSignup: (state, action) => {state.isSignup = action.payload},
+        setLoginForm: (state, action) => {state.loginForm = action.payload},
+        setSignupForm: (state, action) => {state.signupForm = action.payload},
+        setCartsLength: (state, action) => {state.cartsLength = action.payload}
     },
     extraReducers: builder => {
         builder
-        .addCase(addToCart.pending, (state) => {
-            state.isLoading = true
-        })
-        .addCase(addToCart.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.userData.cart.push(action.payload)
-            state.isSuccessAdd = true
-        })
-        .addCase(addToCart.rejected, (state, action) => {
-            state.isLoading = false
-            if (action.payload) {
-                state.notification.message = action.payload.errorMessage
-            } else {
-                state.notification.message = action.error.message
-            }
-            state.notification.type = 'error'
-        })
         .addCase(getUserData.pending, (state) => {
             state.isLoading = true
         })
         .addCase(getUserData.fulfilled, (state, action) => {
             state.isLoading = false
-            state.userData = action.payload
+            const deletePassword = ({password, ...obj}) => ({...obj})
+            const localUser = deletePassword(action.payload)
+            localStorage.setItem('user-login', JSON.stringify(localUser))
+            localStorage.setItem('is-logged', JSON.stringify(true))
         })
         .addCase(getUserData.rejected, (state, action) => {
             state.isLoading = false
             if (action.payload) {
-                state.notification.message = action.payload.errorMessage
+                state.error = action.payload.errorMessage
             } else {
-                state.notification.message = action.error.message
+                state.error = action.error.message
             }
-            state.notification.type = 'error'
         })
         .addCase(getCityArray.pending, (state) => {
             state.isLoading = true
@@ -160,31 +139,16 @@ export const UserSlice = createSlice({
         .addCase(getCityArray.rejected, (state, action) => {
             state.isLoading = false
             if (action.payload) {
-                state.notification.message = action.payload.errorMessage
+                state.error = action.payload.errorMessage
             } else {
-                state.notification.message = action.error.message
+                state.error = action.error.message
             }
-            state.notification.type = 'error'
-        })
-        .addCase(addUserOrders.pending, (state) => {
-            state.isLoading = true
-        })
-        .addCase(addUserOrders.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.userData.orders.push(action.payload)
-        })
-        .addCase(addUserOrders.rejected, (state, action) => {
-            state.isLoading = false
-            if (action.payload) {
-                state.notification.message = action.payload.errorMessage
-            } else {
-                state.notification.message = action.error.message
-            }
-            state.notification.type = 'error'
         })
     },
 })
 
-export const { setAddedItem, setIsLogged, incrementQuantity, 
-    clearNotification, setDistricsArray, setPaymentForm } = UserSlice.actions
+export const { setIsLogged, setDistricsArray, setPaymentForm,
+    setIsLogging, setIsSignup, setLoginForm,
+    setSignupForm, setCartsLength } = UserSlice.actions
+    
 export default UserSlice.reducer

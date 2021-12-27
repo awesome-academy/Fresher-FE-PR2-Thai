@@ -1,16 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
-import { formatPrice } from "../../helpers";
-import { updateUserCart } from "../../store/slices/UserSlice"
+import { formatPrice, getLocalData  } from "../../helpers";
 import { useTranslation } from "react-i18next"
 
-function CartItem({ item, getCartDelete, changeIsChange }) {
+function CartItem({ item, getCartDelete, toggleIsChangeQuantity }) {
     const { t } = useTranslation()
     const { name, img, price, quantity, id } = item
     const priceFormat = formatPrice(price, t)
     const totalFormat = formatPrice(price*quantity, t)
-    const { isLogged, userData } = useSelector(({user}) => user)
-    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
-    const dispatch = useDispatch()
+    const { localCarts, isLogged, userData } = getLocalData()
 
     const handleChangeQnt = (e) => {
         let value
@@ -26,13 +22,14 @@ function CartItem({ item, getCartDelete, changeIsChange }) {
                 break;
         }
         if (isLogged) {
-            const newCart = {...item, quantity: value}
-            dispatch(updateUserCart(userData.id, newCart))
+            const newLocalCarts = updateCartList(id, value, userData.carts)
+            const newUserData = {...userData, carts: newLocalCarts}
+            localStorage.setItem('user-login', JSON.stringify(newUserData))
         } else {
             const newLocalCarts = updateCartList(id, value, localCarts)
             localStorage.setItem('local-carts', JSON.stringify(newLocalCarts))
-            changeIsChange()
         }
+        toggleIsChangeQuantity()
     }
 
     const updateCartList = (id, value, arr) => {

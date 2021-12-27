@@ -1,25 +1,32 @@
-import { createListNav } from '../../helpers'
+import './cart.scss'
+import { createListNav, getLocalData, formatPrice, getTotal } from '../../helpers'
 import { useTranslation } from 'react-i18next'
 import NavComponent from '../nav'
 import { Link, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import './cart.scss'
+import { useDispatch } from 'react-redux'
 import CartItem from './CartItem'
-import { formatPrice, getTotal } from '../../helpers'
-import { useState } from 'react'
-import { deleteUserCart } from '../../store/slices/UserSlice'
+import { useEffect, useState } from 'react'
+import { setCartsLength, updateUserCart } from '../../store/slices/UserSlice'
 
 function Cart() {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const { pathname } = useLocation()
-    const { isLogged, userData } = useSelector(({user}) => user)
-    const localCarts = JSON.parse(localStorage.getItem('local-carts'))
-    const cartList = isLogged ? userData.cart : localCarts ? localCarts : []
+    const { localCarts, isLogged, userData } = getLocalData()
+    const cartList = isLogged ? userData.carts : localCarts ? localCarts : []
     const totalPay = getTotal(cartList)
     const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false)
     const [idCartDelete, setIdCartDelete] = useState('')
-    const [isChange, setIschange] = useState(false)
+    const [isChange, setIsChangeQuantity] = useState(false)
+
+    useEffect(()=>{
+        return () => {
+            if (isLogged && userData) {
+                const { carts, id: userId } = userData
+                dispatch(updateUserCart({userId, carts}))
+            }
+        }
+    })
 
     const getCartDelName = () => {
         const cartDelete = cartList.find(cart => cart.id === idCartDelete)
@@ -33,18 +40,20 @@ function Cart() {
 
     const handleDelCart = () => {
         const newCarts = cartList.filter(cart => cart.id !== idCartDelete)
+        const newUserData = {...userData, carts : newCarts}
         if (isLogged) {
-            dispatch(deleteUserCart(userData.id, idCartDelete))
+            localStorage.setItem('user-login', JSON.stringify(newUserData))
         } else if (newCarts.length > 0) {
             localStorage.setItem('local-carts', JSON.stringify(newCarts))
         } else {
             localStorage.removeItem('local-carts')
         }
+        setCartsLength(newCarts.length)
         setIsOpenConfirmModal(false)
     }
 
-    const changeIsChange = () => {
-        setIschange(!isChange)
+    const toggleIsChangeQuantity = () => {
+        setIsChangeQuantity(!isChange)
     }
 
     return ( 
@@ -69,7 +78,7 @@ function Cart() {
                         <tbody>
                             {cartList.length ? 
                                 cartList.map(item => <CartItem key={item.id} item={item}
-                                    getCartDelete={getCartDelete} changeIsChange={changeIsChange}
+                                    getCartDelete={getCartDelete} toggleIsChangeQuantity={toggleIsChangeQuantity}
                                 />)
                             :
                                 <tr>

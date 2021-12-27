@@ -1,18 +1,27 @@
-import { setPaymentForm } from '../../store/slices/UserSlice'
+import { setPaymentForm, setSignupForm, setLoginForm } from '../../store/slices/UserSlice'
 import './form-group.scss'
 import SelectComponent from './SelectCity'
 import SelectDistricts from './SelectDistricts'
 import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
 
-function FromGroup({ type = 'text', placeholder = '', name = '', addressFormError}) {
+function FormGroup({ type = 'text', placeholder = '', name = '', formError}) {
     const dispatch = useDispatch()
-    const { paymentForm } = useSelector(({user}) => user)
-    const clearErrorEffect = addressFormError ? addressFormError.clearErrorEffect : null
-    const fieldErrName = addressFormError ? addressFormError.fieldErrName : null
+    const { paymentForm, isLogging, isSignup, loginForm, signupForm } = useSelector(({user}) => user)
+    const clearErrorEffect = formError ? formError.clearErrorEffect : null
+    const fieldErrName = formError ? formError.fieldErrName : null
+    const [inputValue, setInputValue] = useState('')
 
     const handleInputChange = (e) => {
         const { value, name } = e.target
-        dispatch(setPaymentForm({...paymentForm, [name]: value}))
+        setInputValue(value)
+        if (isLogging) {
+            dispatch(setLoginForm({...loginForm, [name]: value}))
+        } else if (isSignup) {
+            dispatch(setSignupForm({...signupForm, [name]: value}))
+        } else {
+            dispatch(setPaymentForm({...paymentForm, [name]: value}))
+        }
         clearErrorEffect && clearErrorEffect()
     }
 
@@ -31,6 +40,7 @@ function FromGroup({ type = 'text', placeholder = '', name = '', addressFormErro
                 return <input type={type} name={name} 
                     className={`form-input w-100 pl-1 fs-default ${fieldErrName && fieldErrName === name && `error`}`}
                     placeholder={placeholder}
+                    value={inputValue}
                     onChange={(e)=> handleInputChange(e)}
                 />
         }
@@ -43,4 +53,4 @@ function FromGroup({ type = 'text', placeholder = '', name = '', addressFormErro
     )
 }
 
-export default FromGroup;
+export default FormGroup;
