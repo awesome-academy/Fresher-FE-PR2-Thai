@@ -188,3 +188,22 @@ export const creatAddressText = (info) => {
     const { address, district, city } = info
     return `${address}${district ? `, ${district}` : ''}${city ? `, ${city}` : ''}`
 }
+
+export const validateNewValue = (newValue, currentValue, fieldName, t) => {
+    let message = ''
+    if (newValue === currentValue) {
+        message = `${t(fieldName)} mới phải khác ${t(fieldName)} cũ!`
+    } else if (newValue === '') {
+        message = `${t(fieldName)} mới không được bỏ trống!`
+    } else {
+        switch (fieldName) {
+            case 'form email':
+                message = EMAIL_REGEX.test(newValue) ? '' : 'Email không hợp lệ!'
+                break;
+            default:
+                message = VNF_REGEX.test(newValue) ? '' : 'Số điện thoại không hợp lệ!'
+                break;
+        }
+    }
+    return message
+}

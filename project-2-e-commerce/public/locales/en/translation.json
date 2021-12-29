@@ -113,5 +113,10 @@
     "date": "Date",
     "orders value": "Order value",
     "pay info": "Payment info",
-    "have not orders": "Have not any orders"
+    "have not orders": "Have not any orders",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "name": "Full name",
+    "phone": "Phone",
+    "please enter": "Please enter your"
 }
