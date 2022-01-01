@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import CartItem from './CartItem'
 import { useEffect, useState } from 'react'
-import { setCartsLength, updateUserCart } from '../../store/slices/UserSlice'
+import { setCartsLength, updateUser } from '../../store/slices/UserSlice'
 
 function Cart() {
     const dispatch = useDispatch()
@@ -22,8 +22,7 @@ function Cart() {
     useEffect(()=>{
         return () => {
             if (isLogged && userData) {
-                const { carts, id: userId } = userData
-                dispatch(updateUserCart({userId, carts}))
+                dispatch(updateUser({userId: userData.id, newUserData: userData}))
             }
         }
     })

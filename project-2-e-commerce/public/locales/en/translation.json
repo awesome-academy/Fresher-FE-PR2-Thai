@@ -118,5 +118,19 @@
     "submit": "Submit",
     "name": "Full name",
     "phone": "Phone",
-    "please enter": "Please enter your"
+    "please enter": "Please enter your",
+    "sales": "Sales",
+    "total orders": "Total orders",
+    "total value": "Total values",
+    "product brand": "Brand",
+    "product type": "Type",
+    "product option": "Option",
+    "product price": "Price",
+    "product desc": "Decription",
+    "add product": "Add new product",
+    "product old price": "Before sales",
+    "status": "Status",
+    "intro low": "About us",
+    "contact low": "Contact",
+    "default address": "Default address"
 }

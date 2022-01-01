@@ -8,7 +8,8 @@ import { formatPrice, getTotal, getSum, createListNav,
     validateForm, getCodeDate, getLocalData } from '../../helpers'
 import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import { addUserOrders, updateUserCart } from '../../store/slices/UserSlice'
+import { updateUser } from '../../store/slices/UserSlice'
+import { addOrdersAdmin } from '../../store/slices/AdminSlice'
 
 function PayPage() {
     const { t } = useTranslation()
@@ -43,19 +44,19 @@ function PayPage() {
             totalOrders: getSum(getTotal(cartList), transFee), 
             code: code,
             info: paymentForm,
-            date: new Date()
+            date: new Date(),
+            status: 'pending'
         }
         if (isLogged) {
-            const newOrdersList = userData.orders.concat([newOrders])
             const userId = userData.id
-            const newUserData = {...userData, carts: [], orders: newOrdersList}
+            const newUserData = {...userData, carts: []}
             localStorage.setItem('user-login', JSON.stringify(newUserData))
-            dispatch(addUserOrders({userId, newOrdersList}))
-            dispatch(updateUserCart({userId, carts: []}))
+            dispatch(updateUser({userId, newUserData}))
         }
         localStorage.setItem('local-orders', JSON.stringify(newOrders))
         localStorage.removeItem('local-carts')
         setIsOpenConfirmModal(false)
+        dispatch(addOrdersAdmin({...newOrders, userId: userData.id}))
     }
 
     return ( 

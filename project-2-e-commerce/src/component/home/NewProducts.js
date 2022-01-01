@@ -27,7 +27,7 @@ function NewProducts() {
                 <LoadingComponent/>
             :
                 <Carousel
-                    swipeable={false}
+                    swipeable={true}
                     draggable={true}
                     showDots={true}
                     responsive={carouselResponsive}

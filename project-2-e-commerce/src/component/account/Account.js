@@ -31,9 +31,10 @@ function AccountInfo() {
     }
 
     const updateNewEmail = async (option) => {
+        const { fieldName, value } = option
         try {
             await updateEmail(auth.currentUser, option.value)
-            await dispatch(updateUser({userId: userLogin.id, option})).unwrap()
+            await dispatch(updateUser({userId: userLogin.id, newUserData: {...userLogin, [fieldName]: value}})).unwrap()
             dispatch(setNotification({type: 'success', message: 'Update thành công!'}))
             setIsEditEmail(false)
         }
@@ -54,8 +55,9 @@ function AccountInfo() {
     }
 
     const updateNewPhone = async (option) => {
+        const { fieldName, value } = option
         try {
-            await dispatch(updateUser({userId: userLogin.id, option})).unwrap()
+            await dispatch(updateUser({userId: userLogin.id, newUserData: {...userLogin, [fieldName]: value}})).unwrap()
             dispatch(setNotification({type: 'success', message: 'Update thành công!'}))
             setIsEditPhone(false)
         }

@@ -9,8 +9,9 @@ import {
     getProducts, getPagination, 
     setTypeRendering, setCurrentPage, setProductsFilter 
 } from '../../store/slices/ProductsSlice'
-import { notificationSelect } from '../../store/slices/NotificationSlice'
-import Toast from '../toast'
+import { createListNav } from '../../helpers'
+import { useLocation } from 'react-router-dom'
+import NavComponent from '../nav'
 
 function Products() {
     const dispatch = useDispatch()
@@ -18,11 +19,11 @@ function Products() {
     const { t } = useTranslation()
     const { all: products, typeRendering, pagination } = useSelector(({products}) => products)
     const { list: renderList, filter, isLoading } = products
-    const { type, message } = useSelector(notificationSelect)
-    
+    const { pathname } = useLocation()
+
     useEffect(()=> {
         dispatch(getProducts(filter))
-        dispatch(getPagination({...filter, _limit: '', _page: ''}))
+        dispatch(getPagination({...filter, limit: '', page: ''}))
     }, [filter, dispatch])
 
     const setActiveLink = (flag) => {
@@ -43,13 +44,13 @@ function Products() {
     }
 
     const handleFilter = (type) => {
-        const newFilter = {...filter, type_like: type, q: '', _page: 1}
+        const newFilter = {...filter, type: type, search: '', page: 1}
         if (type) {
             dispatch(setTypeRendering(type))
             dispatch(setProductsFilter(newFilter))
         } else {
             dispatch(setTypeRendering('all'))
-            dispatch(setProductsFilter({...newFilter, type_like: ''}))
+            dispatch(setProductsFilter({...newFilter, type: ''}))
         }
         dispatch(setCurrentPage(1))
     }
@@ -59,9 +60,9 @@ function Products() {
         const valueArr = value.split('-')
         setSortValue(value)
         if (value === 'default') {
-            dispatch(setProductsFilter({...filter, _sort: '', _order: ''}))
+            dispatch(setProductsFilter({...filter, sortBy: '', order: ''}))
         } else {
-            dispatch(setProductsFilter({...filter, _sort: valueArr[1], _order: valueArr[0]}))
+            dispatch(setProductsFilter({...filter, sortBy: valueArr[1], order: valueArr[0]}))
         }
     }
     
@@ -97,7 +98,8 @@ function Products() {
 
     return ( 
         <div className="products">
-            <section className="wrap d-flex">
+            <NavComponent navList={createListNav(t, pathname)}/>
+            <section className="wrap d-flex mt-2">
                 <div className="category">
                     <h3 className='category-heading fs-default'>
                         {t('category')}
@@ -137,7 +139,10 @@ function Products() {
                 </div>
                 <div className='content'>
                     <div className='content-heading d-flex ai-center jc-space-btw'>
-                        <h2>{setContentHeading(typeRendering)}</h2>
+                        <div className='fs-default d-flex ai-baseline'>
+                            <h2>{setContentHeading(typeRendering)}</h2>
+                            <span className='ml-1'><i>{`(${pagination.list.length} Sản phẩm)`}</i></span>
+                        </div>
                         <div className='heading-sort d-flex ai-center'>
                             <span className='sort-label mr-1 fs-default'>{t('sort label')}:</span>
                             <div className='sort-select d-flex'>
@@ -165,7 +170,6 @@ function Products() {
                     </div>
                 </div>
             </section>
-            {message && <Toast type={type} message={message}/>}
         </div>
     );
 }

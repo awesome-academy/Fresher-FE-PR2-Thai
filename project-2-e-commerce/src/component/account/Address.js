@@ -35,8 +35,8 @@ function Address() {
                     id: getCodeDate(new Date())
                 }
             ])
-            const option = {fieldName: 'address', value: newAddressList}
-            dispatch(updateUser({userId: userLogin.id, option}))
+            const newUserData = {...userLogin, address: newAddressList}
+            dispatch(updateUser({userId: userLogin.id, newUserData}))
             setIsOpenAddBox(false)
             setAddressNewFrom({
                 name: '',
@@ -107,9 +107,9 @@ function Address() {
                             const {isDefault, id, name, address, phone} = item
                             return (
                                 <div className="fs-default d-flex ai-center jc-space-btw p-1 bt-default" key={id}>
-                                    <div className="">
+                                    <div>
                                         {isDefault ?
-                                            <span className="">{t('default address')}</span>
+                                            <span className="text-blue">{t('default address')}</span>
                                         : null}
                                         <table className="b-none mt-2">
                                             <tbody>
