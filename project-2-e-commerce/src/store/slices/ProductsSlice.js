@@ -5,36 +5,36 @@ import queryString from 'query-string'
 const initialState = {
     special: {
         filter: {
-            _limit: 8,
-            _page: 1,
-            type_like: 'special'
+            limit: 8,
+            page: 1,
+            type: 'special'
         },
         list: [],
         isLoading: false,
     },
     all: {
         filter: {
-            _page: 1,
-            _limit: 12,
-            q: ''
+            page: 1,
+            limit: 12,
+            search: ''
         },
         list: [],
         isLoading: false,
     },
     new: {
         filter: {
-            _page: 1,
-            _limit: 8,
-            type_like: 'new'
+            page: 1,
+            limit: 8,
+            type: 'new'
         },
         list: [],
         isLoading: false,
     },
     sale: {
         filter: {
-            '_page': 1,
-            '_limit': 8,
-            type_like: 'sale'
+            page: 1,
+            limit: 8,
+            type: 'sale'
         },
         list: [],
         isLoading: false,
@@ -141,12 +141,51 @@ export const getSiminarProducts = createAsyncThunk(
     }
 )
 
+export const deleteProduct = createAsyncThunk(
+    'product/delete',
+    async (id, { rejectWithValue }) => {
+        try {
+            const res = await axios.delete(`${process.env.REACT_APP_BASE_URL}/products/${id}`)
+            return res.data
+        }
+        catch(err) {
+            return rejectWithValue(err.res.data)
+        }
+    }
+)
+
+export const updateProduct = createAsyncThunk(
+    'product/put',
+    async ({id, newProductUpdate}, { rejectWithValue }) => {
+        try {
+            const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/products/${id}`, newProductUpdate)
+            return res.data
+        }
+        catch(err) {
+            return rejectWithValue(err.res.data)
+        }
+    }
+)
+
+export const addProduct = createAsyncThunk(
+    'product/add',
+    async (obj, { rejectWithValue }) => {
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/products`, obj)
+            return res.data
+        }
+        catch(err) {
+            return rejectWithValue(err.res.data)
+        }
+    }
+)
+
 export const ProductsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
         searchByWords: (state, action) => {
-            state.all.filter.q = action.payload
+            state.all.filter.search = action.payload
         },
         setCurrentPage: (state, action) => {
             state.currentPage = action.payload
@@ -165,9 +204,9 @@ export const ProductsSlice = createSlice({
         },
         resetFilter: (state) => {
             state.all.filter = {
-                _page: 1,
-                _limit: 12,
-                q: ''
+                page: 1,
+                limit: 12,
+                search: ''
             }
             state.currentPage = 1
             state.typeRendering = 'all'

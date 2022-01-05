@@ -5,8 +5,7 @@ import NavComponent from '../nav';
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from '../../store/slices/UserSlice'
-import { notificationSelect } from '../../store/slices/NotificationSlice';
-import Toast from '../toast'
+import './account.scss'
 
 function Account() {
     const { pathname } = useLocation()
@@ -14,7 +13,6 @@ function Account() {
     const dispatch = useDispatch()
     const { isLogged, userData } = getLocalData()
     const { id } = userData
-    const { message, type } = useSelector(notificationSelect)
     const { address } = useSelector(({user}) => user.userLogin)
 
     useEffect(() => {
@@ -53,7 +51,6 @@ function Account() {
                     </div>
                 </div>
             </div>
-            {message && <Toast message={message} type={type}/>}
         </div>
     );
 }

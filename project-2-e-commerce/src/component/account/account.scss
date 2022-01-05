@@ -1,0 +1,20 @@
+@import '../../style//mixins';
+
+.account {
+    .table-address, .table-orders-name {
+        min-width: 200px;
+    }
+    @include Responsive (TAB) {
+        .orders-table {
+            overflow-x: auto;
+        }
+    }
+    @include Responsive (SM) {
+        table {
+            margin-top: 0;
+        }
+        .wrap {
+            padding-bottom: 0;
+        }
+    }
+}

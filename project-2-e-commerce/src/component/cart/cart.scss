@@ -18,10 +18,14 @@ table {
     }
 }
 .cart-img {
-    width: 200px;
+    min-width: 200px;
+    max-width: 250px;
     img {
         width: 60%;
     }
+}
+.cart-quantity {
+    min-width: 250px;
 }
 .qnt-btn {
     border: none;
@@ -59,4 +63,10 @@ table {
     &:hover {
         background-color: $greenColor;
     }
+}
+.cart-content {
+    overflow: hidden;
+}
+.cart-table {
+    overflow-x: auto;
 }

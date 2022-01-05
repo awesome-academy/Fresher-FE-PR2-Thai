@@ -1,4 +1,5 @@
 @import '../../style/variable';
+@import '../../style/mixins';
 
 .home-header {
     position: relative;
@@ -28,6 +29,9 @@
     }
     &.special-products {
         margin-top: 100px;
+        @include Responsive (TAB) {
+            margin-top: 50px;
+        }
     }
     .special-more {
         height: 30px;

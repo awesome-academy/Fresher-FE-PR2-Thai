@@ -1,10 +1,79 @@
 @import '../../style/variable';
+@import '../../style/mixins';
 
 .products {
-    padding-top: 30px;
     padding-bottom: 30px;
     border-bottom: $borderDefault;
     min-height: 80vh;
+    @include Responsive(TAB) {
+        .wrap {
+            flex-direction: column;
+        }
+        .category {
+            width: 100%;
+        }
+        .content {
+            width: 100%;
+            padding-top: 20px;
+            padding-left: 0;
+        }
+        .content-products {
+            padding-bottom: 0;
+        }
+        .category-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .category-item {
+            margin-bottom: 0;
+            margin-right: 14px;
+            padding-right: 14px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            &::after {
+                position: absolute;
+                right: 0;
+                top: 0;
+                content: '';
+                width: 1px;
+                height: 100%;
+                background-color: $mainColor;
+            }
+        }
+        .close-brand {
+            position: unset !important;
+            margin-left: 14px;
+        }
+    }
+    @include Responsive(SM) {
+        .content {
+            border-top: $borderDefault;
+        }
+        .content-heading {
+            flex-direction: column;
+            align-items: flex-start;
+            height: unset;
+            padding-bottom: 20px;
+        }
+        .heading-sort {
+            margin-top: 10px;
+        }
+        .category-item {
+            margin-bottom: 20px;
+        }
+        .category-heading {
+            margin-top: 0;
+        }
+        .sort-select {
+            font-size: 1.6rem;
+            height: 40px;
+        }
+        .select {
+            font-size: 1.6rem;
+        }
+    }
 }
 .category {
     width: 25%;
@@ -67,6 +136,12 @@ select {
 .products-list {
     .product-item {
         width: 33.33333%;
+        @include Responsive(MD) {
+            width: 50%;
+        }
+        @include Responsive(SM) {
+            width: 100%;
+        }
     }
 }
 .pagination-item {
@@ -77,5 +152,9 @@ select {
     cursor: pointer;
     &.active {
         background-color: $greenColor;
+    }
+    &:hover {
+        background-color: $blueColor;
+        color: $whiteColor;
     }
 }
