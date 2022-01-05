@@ -8,7 +8,7 @@ function Footer() {
     return ( 
         <footer className='footer'>
             <div className='wrap'>
-                <div className='row'>
+                <div className='row flex-wrap'>
                     <FooterAbout/>
                     <FooterPolicy/>
                     <FooterSupport/>

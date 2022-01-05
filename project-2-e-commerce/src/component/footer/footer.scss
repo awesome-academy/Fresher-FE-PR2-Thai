@@ -1,4 +1,5 @@
 @import '../../style/variable';
+@import '../../style/mixins';
 
 .footer {
     padding-top: 50px;
@@ -9,10 +10,43 @@
         border: none;
         cursor: pointer;
     }
+    &-input {
+        @include Responsive(SM) {
+            height: 40px;
+            justify-content: center;
+            margin-top: 20px !important;
+            input, button {
+                min-height: 100% !important;
+                font-size: 2rem;
+                min-width: 100px;
+            }
+        }
+    }
+    &-link a{
+        @include Responsive(SM) {
+            font-size: 2.5rem;
+            &:not(:last-child) {
+                margin-right: 3rem;
+            }
+        }
+    }
 }
 .footer-item {
+    @include Responsive(SM) {
+        text-align: center;
+        ul {
+            margin-top: 20px;
+        }
+        .footer-heading {
+            font-size: 2rem !important;
+        }
+        li {
+            font-size: 1.8rem !important;
+        }
+    }
     .footer-heading , li {
         font-size: 1.5rem;
+        text-transform: uppercase;
     }
     a {
         color: $textColor;

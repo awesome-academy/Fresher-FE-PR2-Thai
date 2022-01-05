@@ -181,7 +181,8 @@ export const getLocalData = () => {
     const userData = JSON.parse(localStorage.getItem('user-login'))
     const isLogged = JSON.parse(localStorage.getItem('is-logged'))
     const localOrders = JSON.parse(localStorage.getItem('local-orders'))
-    return { localCarts, userData, isLogged, localOrders }
+    const localAdminId = JSON.parse(sessionStorage.getItem('admin-id'))
+    return { localCarts, userData, isLogged, localOrders, localAdminId }
 }
 
 export const creatAddressText = (info) => {
@@ -206,4 +207,15 @@ export const validateNewValue = (newValue, currentValue, fieldName, t) => {
         }
     }
     return message
+}
+
+export const getOrderStatusStyle = (status) => {
+    switch (status) {
+        case 'approved':
+            return 'text-green'
+        case 'refuse':
+            return 'text-red'
+        default:
+            return 'text-blue'
+    }
 }

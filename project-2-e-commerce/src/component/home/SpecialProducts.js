@@ -17,7 +17,7 @@ function SpecialProducts() {
     }, [filter, dispatch])
     
     const handleChangeProducts = () => {
-        const newFilter = { ...filter, type_like: 'special', _limit: 12}
+        const newFilter = { ...filter, type: 'special', limit: 12}
         dispatch(setTypeRendering('special'))
         dispatch(setProductsFilter(newFilter))
     }

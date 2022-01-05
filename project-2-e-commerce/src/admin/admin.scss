@@ -1,0 +1,188 @@
+@import '../style/variable';
+@import '../style/mixins';
+
+.admin {
+    height: 100vh;
+    &-login {
+        height: 100vh;
+    }
+    &-login-form {
+        width: 350px;
+        height: 300px;
+    }
+    &-content {
+        overflow-y: auto;
+        &::-webkit-scrollbar-thumb{
+            display: none;
+        }
+    }
+    &-btn {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: unset;
+        border: none;
+    }
+    &-area {
+        height: 300px;
+    }
+}
+.admin-filter-nav {
+    height: 50px;
+    background-color: $adminMainColor;
+}
+.admin-nav {
+    width: 100px;
+    background-color: $adminMainColor;
+    position: relative;
+    &-border {
+        position: absolute;
+        height: 20vh;
+        top: 0;
+        left: 0;
+        border: 4px solid $accountColor;
+        z-index: 0;
+        transition: all 0.5s ease;
+    }
+    &-item {
+        height: 20vh;
+        z-index: 10;
+        position: relative;
+        &:hover {
+            i {
+                color: $accountColor;
+            }
+        }
+    }
+    &-icon {
+        font-size: 4rem;
+    }
+}
+.admin-products-type {
+    position: relative;
+    &:last-child {
+        margin-right: 0;
+    }
+}
+.admin-products-table, .admin-orders-table {
+    overflow-x: auto;
+}
+.admin-add-btn:hover {
+    color: $blueColor;
+    i {
+        color: $blueColor;
+    }
+}
+.table-img {
+    width: 200px;
+    margin: 0 auto;
+}
+.table-address {
+    min-width: 140px;
+}
+.table-orders {
+    min-width: 200px;
+}
+.table-code {
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table-btn {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    width: 80px;
+    border-radius: 6px;
+    cursor: pointer;
+    &:hover {
+        background-color: $blueColor;
+        color: $whiteColor;
+    }
+}
+.table-desc {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+    text-align: justify;
+    width: 300px;
+}
+.edit-modal {
+    background-color: $adminMainColor;
+    max-width: 100%;
+    width: 700px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
+.account {
+    @include Responsive(TAB) {
+        .row {
+            flex-direction: column;
+        }
+        .acc-category {
+            width: 100%;
+            border-bottom: $borderDefault;
+        }
+        .acc-content {
+            width: 100%;
+            padding-top: 20px;
+        }
+        .category {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .category-item {
+            margin-bottom: 0;
+            margin-right: 14px;
+            padding-right: 14px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            &::after {
+                position: absolute;
+                right: 0;
+                top: 0;
+                content: '';
+                width: 1px;
+                height: 100%;
+                background-color: $mainColor;
+            }
+        }
+        .acc-info, .acc-address {
+            padding: 0;
+        }
+    }
+    @include Responsive (SM) {
+        .category {
+            flex-wrap: wrap;
+            margin-bottom: 0;
+        }
+        .category-item {
+            margin-bottom: 20px;
+        }
+    }
+}
+.top {
+    &-0 {
+        top: 0
+    }
+    &-20 {
+        top: 20vh
+    }
+    &-40 {
+        top: 40vh
+    }
+    &-60 {
+        top: 60vh
+    }
+}
+.flex-1 {
+    flex: 1
+}
+.w-3 {
+    width: 3rem;
+}

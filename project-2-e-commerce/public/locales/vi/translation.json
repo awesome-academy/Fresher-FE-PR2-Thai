@@ -117,5 +117,19 @@
     "submit": "Submit",
     "name": "Họ và tên",
     "phone": "Số điện thoại",
-    "please enter": "Vui lòng nhập"
+    "please enter": "Vui lòng nhập",
+    "sales": "Doanh thu",
+    "total orders": "Tổng đơn hàng",
+    "total value": "Tổng giá trị",
+    "product brand": "Thương hiệu",
+    "product type": "Loại",
+    "product option": "Lựa chọn",
+    "product price": "Giá sản phẩm",
+    "product desc": "Mô tả",
+    "add product": "Thêm sản phẩm",
+    "product old price": "Giá chưa sale",
+    "status": "Trạng thái",
+    "intro low": "Giới thiệu",
+    "contact low": "Liên hệ",
+    "default address": "Địa chỉ mặc định"
 }

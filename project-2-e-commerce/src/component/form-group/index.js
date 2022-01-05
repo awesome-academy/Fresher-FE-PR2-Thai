@@ -1,13 +1,16 @@
 import { setPaymentForm, setSignupForm, setLoginForm } from '../../store/slices/UserSlice'
+import { setLoginAdminForm } from '../../store/slices/AdminSlice'
 import './form-group.scss'
 import SelectComponent from './SelectCity'
 import SelectDistricts from './SelectDistricts'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import { adminSelector } from '../../store/slices/AdminSlice'
 
 function FormGroup({ type = 'text', placeholder = '', name = '', formError}) {
     const dispatch = useDispatch()
     const { paymentForm, isLogging, isSignup, loginForm, signupForm } = useSelector(({user}) => user)
+    const { loginAdminForm, isLoggingAdmin } = useSelector(adminSelector)
     const clearErrorEffect = formError ? formError.clearErrorEffect : null
     const fieldErrName = formError ? formError.fieldErrName : null
     const [inputValue, setInputValue] = useState('')
@@ -19,6 +22,8 @@ function FormGroup({ type = 'text', placeholder = '', name = '', formError}) {
             dispatch(setLoginForm({...loginForm, [name]: value}))
         } else if (isSignup) {
             dispatch(setSignupForm({...signupForm, [name]: value}))
+        } else if (isLoggingAdmin) {
+            dispatch(setLoginAdminForm({...loginAdminForm, [name]: value}))
         } else {
             dispatch(setPaymentForm({...paymentForm, [name]: value}))
         }

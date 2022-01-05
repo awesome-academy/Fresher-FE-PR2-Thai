@@ -9,15 +9,21 @@ import Account from './component/account'
 import Cart from './component/cart'
 import PayPage from './component/pay-page'
 import ConfirmPage from './component/confirm-page'
-import NotFound from './component/NotFound'
 import AccountInfo from './component/account/Account';
 import Orders from './component/account/Orders';
 import Password from './component/account/Password';
 import Address from './component/account/Address';
+import NotFound from './component/NotFound'
+import Introduction from './component/Introduction'
+import Contact from './component/Contact'
+import Toast from './component/toast'
+import { useSelector } from 'react-redux'
 import { Routes, Route } from "react-router-dom";
+import { notificationSelect } from './store/slices/NotificationSlice'
 import './style/_global.scss'
 
 function App() {
+    const { message, type } = useSelector(notificationSelect)
     return (
         <>
             <Header></Header>
@@ -38,7 +44,10 @@ function App() {
                     <Route path="pay-page" element={<PayPage />}/>
                     <Route path="confirm-page" element={<ConfirmPage />}/>
                     <Route path="*" element={<NotFound />}/>
+                    <Route path='intro' element={<Introduction/>}/>
+                    <Route path='contact' element={<Contact/>}/>
                 </Routes>
+                {message && <Toast message={message} type={type}/>}
             </div>
             <Footer></Footer>
         </>
