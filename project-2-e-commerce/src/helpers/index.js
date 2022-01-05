@@ -208,3 +208,14 @@ export const validateNewValue = (newValue, currentValue, fieldName, t) => {
     }
     return message
 }
+
+export const getOrderStatusStyle = (status) => {
+    switch (status) {
+        case 'approved':
+            return 'text-green'
+        case 'refuse':
+            return 'text-red'
+        default:
+            return 'text-blue'
+    }
+}
