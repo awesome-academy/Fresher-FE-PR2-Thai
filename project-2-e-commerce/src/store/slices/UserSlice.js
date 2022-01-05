@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import queryString from 'query-string'
 
 const initialState = {
     isLoading: false,
@@ -28,7 +29,8 @@ const initialState = {
     isSignup: false,
     cartsLength: 0,
     error: '',
-    userLogin: ''
+    userLogin: '',
+    ordersList: ''
 }
 
 export const addUser = createAsyncThunk(
@@ -44,11 +46,11 @@ export const addUser = createAsyncThunk(
     }
 )
 
-export const updateUserCart = createAsyncThunk(
+export const updateUser = createAsyncThunk(
     'cart/update',
-    async ({ userId, carts }, { rejectWithValue }) => {
+    async ({ userId, newUserData }, { rejectWithValue }) => {
         try {
-            const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {carts})
+            const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, newUserData)
             return res.data
         }
         catch(err) {
@@ -74,7 +76,7 @@ export const getCityArray = createAsyncThunk(
     'city/get',
     async (filter, { rejectWithValue }) => {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/province`)
+            const res = await axios.get(`${process.env.REACT_APP_PROVINCE_API}`)
             return res.data
         }
         catch(err) {
@@ -83,24 +85,12 @@ export const getCityArray = createAsyncThunk(
     }
 )
 
-export const addUserOrders = createAsyncThunk(
-    'order/post',
-    async ({userId, newOrdersList}, { rejectWithValue }) => {
+export const getUserOrders = createAsyncThunk(
+    'user/get-orders',
+    async (userId, { rejectWithValue }) => {
         try {
-            const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {orders: newOrdersList})
-            return res.data
-        }
-        catch(err) {
-            return rejectWithValue(err.res.data)
-        }
-    }
-)
-
-export const updateUser = createAsyncThunk(
-    'user/update',
-    async ({userId, option}, { rejectWithValue }) => {
-        try {
-            const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {[option.fieldName]: option.value})
+            const stringified = queryString.stringify({userId})
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/orders?${stringified}`)
             return res.data
         }
         catch(err) {
@@ -169,6 +159,21 @@ export const UserSlice = createSlice({
             state.userLogin = action.payload
         })
         .addCase(updateUser.rejected, (state, action) => {
+            state.isLoading = false
+            if (action.payload) {
+                state.error = action.payload.errorMessage
+            } else {
+                state.error = action.error.message
+            }
+        })
+        .addCase(getUserOrders.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(getUserOrders.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.ordersList = action.payload
+        })
+        .addCase(getUserOrders.rejected, (state, action) => {
             state.isLoading = false
             if (action.payload) {
                 state.error = action.payload.errorMessage

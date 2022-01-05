@@ -33,7 +33,7 @@ function Signup() {
             const { email, password, name, phone } = signupForm
             const userCredential = await createUserWithEmailAndPassword(auth, email, password)
             const user = userCredential.user
-            const newUser = {email, password, id: user.uid, carts: [], orders: [], phone, name, address: []}
+            const newUser = {email, password, id: user.uid, carts: [], phone, name, address: []}
             await dispatch(addUser(newUser)).unwrap()
             navigate('/login')
             dispatch(setNotification({type: 'success', message: 'Đăng ký thành công'}))

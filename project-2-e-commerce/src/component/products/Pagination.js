@@ -15,14 +15,14 @@ function Pagination({ filter }) {
     }
 
     const handleChangePage = (num) => {
-        const newFilter = {...filter, _page: num}
+        const newFilter = {...filter, page: num}
         dispatch(getProducts(newFilter))
         dispatch(setCurrentPage(num))
     }
 
     const handlePrevPage = () => {
         if (currentPage > 1) {
-            const newFilter = {...filter, _page: currentPage - 1}
+            const newFilter = {...filter, page: currentPage - 1}
             dispatch(getProducts(newFilter))
             dispatch(prevPage())
         }
@@ -30,7 +30,7 @@ function Pagination({ filter }) {
 
     const handleNextPage = () => {
         if (currentPage < pagesArr.length) {
-            const newFilter = {...filter, _page: currentPage + 1}
+            const newFilter = {...filter, page: currentPage + 1}
             dispatch(getProducts(newFilter))
             dispatch(nextPage())
         }

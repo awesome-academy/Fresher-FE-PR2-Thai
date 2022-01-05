@@ -1,9 +1,9 @@
 import './header.scss'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import { searchByWords, getProducts, getPagination, resetFilter } from '../../store/slices/ProductsSlice'
-import { setCartsLength, updateUserCart } from '../../store/slices/UserSlice'
+import { setCartsLength, updateUser } from '../../store/slices/UserSlice'
 import { useTranslation } from 'react-i18next'
 import { setActiveColor, getLocalData } from '../../helpers'
 
@@ -17,10 +17,11 @@ function Header() {
     const [inputSearch, setInputSearch] = useState('')
     const [currentLang, setCurrentLang] = useState('vi')
     const navigate = useNavigate()
+    const navElement = useRef()
 
     useEffect(()=> {
         dispatch(setCartsLength(cartLength))
-    }, [cartLength, dispatch])
+    }, [cartLength])
 
     const handleChange = (e) => {
         setInputSearch(e.target.value)
@@ -31,7 +32,7 @@ function Header() {
         if (inputSearch) {
             setInputSearch('')
             dispatch(getProducts(filter))
-            dispatch(getPagination({...filter, _limit: '', _page: ''}))
+            dispatch(getPagination({...filter, limit: '', page: ''}))
         }
     }
 
@@ -47,10 +48,19 @@ function Header() {
 
     const handleLogout = () => {
         const { carts, id: userId } = userData
-        dispatch(updateUserCart({userId, carts}))
+        dispatch(updateUser({userId, carts}))
         localStorage.removeItem('is-logged')
         localStorage.removeItem('user-login')
         navigate('/login')
+    }
+
+    const toggleNav = () => {
+        navElement.current.classList.toggle('open-nav')
+    }
+
+    const handleRouter = () => {
+        dispatch(resetFilter())
+        toggleNav()
     }
 
     return ( 
@@ -92,28 +102,35 @@ function Header() {
             <div className="header-nav">
                 <div className='wrap d-flex ai-center'>
                     <nav className='header-nav-left'>
-                        <ul className='d-flex'>
+                        <div className='fs-3 header-nav-btn'
+                            onClick={()=>toggleNav()}
+                        >
+                            <i className="fas fa-bars"/>
+                        </div>
+                        <ul className='d-flex header-nav-list' ref={navElement}>
                             <li>
                                 <NavLink style={setActiveColor} to="/"
-                                    onClick={()=>dispatch(resetFilter())}
+                                    onClick={()=>handleRouter()}
                                 >{t('home')}</NavLink>
                             </li>
                             <li className='ml-3'>
                                 <NavLink style={setActiveColor} to="/intro"
-                                    onClick={()=>dispatch(resetFilter())}
+                                    onClick={()=>handleRouter()}
                                 >{t('introduction')}</NavLink>
                             </li>
                             <li className='ml-3'>
-                                <NavLink style={setActiveColor} to="/products">{t('products')}</NavLink>
+                                <NavLink style={setActiveColor} to="/products"
+                                    onClick={()=>toggleNav()}
+                                >{t('products')}</NavLink>
                             </li>
                             <li className='ml-3'>
                                 <NavLink style={setActiveColor} to="/contact"
-                                    onClick={()=>dispatch(resetFilter())}
-                                > {t('contact')}</NavLink>
+                                    onClick={()=>handleRouter()}
+                                >{t('contact')}</NavLink>
                             </li>
                             <li className='ml-3'>
                                 <NavLink style={setActiveColor} to="/news"
-                                    onClick={()=>dispatch(resetFilter())}
+                                    onClick={()=>handleRouter()}
                                 >{t('news')}</NavLink>
                             </li>
                         </ul>
